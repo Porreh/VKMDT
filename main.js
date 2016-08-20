@@ -66,12 +66,12 @@ class VKData {
         id = response.session.mid;
       } 
     } else {
-      VK.Auth.login(logIn);
+      VK.Auth.login(this.logIn);
     }
   }
 
   start() {
-    VK.Auth.getLoginStatus(logIn);
+    VK.Auth.getLoginStatus(this.logIn);
   }
 
   getData() {
