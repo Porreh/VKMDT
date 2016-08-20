@@ -52,7 +52,6 @@ class VKI {
   getMusicData() {
     let musicData = [];
     VK.Api.call('audio.get', {owner_id: 137768020}, function(x) { // Chenge ID
-      console.log(x);
       for(let i = 1; i < x.response[0]; i++) {
         let url = x.response[i].url,
             artist = x.response[i].artist,
