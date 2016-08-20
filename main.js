@@ -57,6 +57,10 @@ class VKI {
   getStatus() {
     VK.Auth.getLoginStatus(x => console.log(x.status));
   }
+  
+  getID() {
+    return this.id;
+  }
 
   logIn(response) {
     function getID(userID) {
