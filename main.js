@@ -54,11 +54,10 @@ class VKI {
     VK.Api.call('audio.get', {owner_id: 137768020}, function(x) { // Chenge ID
       console.log(x);
       for(let i = 1; i < x.response[0]; i++) {
-        let name = x.response[i].aid,
-            url = x.response[i].url,
+        let url = x.response[i].url,
             artist = x.response[i].artist,
             title = x.response[i].title;
-        musicData.push({information: {'name': name, 'artist': artist, 'title': title}, 'url': 'https://crossorigin.me/' + url});
+        musicData.push({'artist': artist, 'title': title, 'url': 'https://crossorigin.me/' + url});
       }
     });
     return musicData;
