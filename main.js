@@ -87,5 +87,5 @@ let downloader = new Downloader(musicData);
 
 window.onload = function() {
   let btn = document.querySelector(".startbutton");
-  btn.addEventListener("click", downloader.getFiles(), false);
+  btn.addEventListener("click", downloader.getFiles, false);
 }
