@@ -59,7 +59,7 @@ class VKI {
   }
 
   getMusic() {
-    VK.Api.call('users.get', {user_ids: 137768020}, function(r) {
+    VK.Api.call('audio.get', {owner_id: 137768020, need_user: 1}, function(r) {
       console.log(r);
     });
   }
