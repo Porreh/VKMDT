@@ -81,16 +81,11 @@ class VKI {
   }
 }
 
-let data = new VKI();
-let musicList = data.getMusicData();
-console.log(musicList);
-
-let downloader = new Downloader(musicList);
-downloader.getFiles();
-
-
+let vk = new VKI();
+let musicData = vk.getMusicData();
+let downloader = new Downloader(musicData);
 
 window.onload = function() {
   let btn = document.querySelector(".startbutton");
-  btn.addEventListener("click", data.checkStatus(), false);
+  btn.addEventListener("click", downloader.getFiles(), false);
 }
