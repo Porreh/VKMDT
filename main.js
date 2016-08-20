@@ -47,6 +47,7 @@ class LinkGenerator {
 
 class VKI {
   constructor() {
+    this.id;
   }
   
   logOut() {
@@ -57,7 +58,7 @@ class VKI {
     VK.Auth.getLoginStatus(x => console.log(x.status));
   }
 
-  getID(userID) {
+  getIDu(userID) {
     VK.Api.call('users.get', { uid: userID }, function(r) { 
       console.log(r);
     });
@@ -65,10 +66,10 @@ class VKI {
   
   logIn(response) {
     if(response.status == ('not_authorized' || 'unknown')) {
-      VK.Auth.login(x => this.getID(x), 8);
+      VK.Auth.login(x => this.getIDu(x), 8);
     } else {
       console.log('already connected');
-      this.getID(response.session.mid);
+      this.getIDu(response.session.mid);
     }
   }
 
