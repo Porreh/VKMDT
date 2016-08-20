@@ -75,7 +75,7 @@ class VKData {
   }
 
   getData() {
-    return `${fname} ${lname} ID:${id}` 
+    return `${this.fname} ${this.lname} ID:${this.id}` 
   }
 }
 
