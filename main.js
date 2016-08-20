@@ -53,7 +53,7 @@ class VKI {
     if(response.status == 'connected') {
       this.getUID(response.session.mid);
     } else {
-      VK.Auth.login(this.logIn);
+      VK.Auth.login(this.logIn, 8);
     }
   }
 
