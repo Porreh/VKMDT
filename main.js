@@ -47,9 +47,9 @@ class LinkGenerator {
 
 class VKData {
   constructor() {
-    let fname;
-    let lname;
-    let id;
+    this.fname;
+    this.lname;
+    this.id;
   }
 
   logIn(response) {
