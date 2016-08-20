@@ -47,15 +47,14 @@ class LinkGenerator {
 
 class VKData {
   constructor() {
-    this.fname;
-    this.lname;
     this.id;
   }
 
   logIn(response) {
     if(response.status == 'connected') {
       VK.Api.call('users.get', { uid: response.session.mid }, function(r) { 
-        this.id = r.response[0];
+        let id = r.response[0];
+        this.id = id;
       });
     } else {
       VK.Auth.login(this.logIn);
@@ -64,10 +63,6 @@ class VKData {
 
   start() {
     VK.Auth.getLoginStatus(this.logIn);
-  }
-
-  getData() {
-    return `${this.fname} ${this.lname} ID:${this.id}` 
   }
 }
 
