@@ -68,6 +68,8 @@ class VKI {
     } else {
       console.log('already connected');
       this.id = response.session.mid;
+      console.log(this.id);
+      console.log(response.session.mid);
     }
   }
 
