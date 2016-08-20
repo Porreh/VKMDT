@@ -53,24 +53,24 @@ class VKI {
   getStatus() {
     VK.Auth.getLoginStatus(x => console.log(x.status));
   }
-  
+
   getID() {
-    console.log(uid);
-  }
-  
-  setID(newID){
-    this.id = newID;
+    console.log(this.id);
   }
 
   logIn(response) {
+    function setID(newID){
+      this.id = newID;
+    }
+
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(this.logIn, 8);
     } else {
       console.log('already connected');
-      this.setID(response.session.mid);
+      setID(response.session.mid);
     }
   }
-  
+
   logOut() {
     VK.Auth.logout(x => console.log(x));
   }
