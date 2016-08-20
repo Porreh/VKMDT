@@ -47,7 +47,7 @@ class LinkGenerator {
 
 class VKI {
   constructor() {
-    this._id = 0;
+    this._id;
   }
 
   get uID() {
@@ -58,12 +58,7 @@ class VKI {
     this._id = newID;
   }
 
-  getStatus() {
-    VK.Auth.getLoginStatus(x => console.log(x.status));
-  }
-
   logIn(response) {
-
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(this.logIn, 8);
     } else {
@@ -76,8 +71,12 @@ class VKI {
     VK.Auth.logout(x => console.log(x));
   }
 
-  status() {
+  checkStatus() {
     VK.Auth.getLoginStatus(this.logIn);
+  }
+  
+  getStatus() {
+    VK.Auth.getLoginStatus(x => console.log(x.status));
   }
 }
 
@@ -85,5 +84,5 @@ let data = new VKI();
 
 window.onload = function() {
   let btn = document.querySelector(".startbutton");
-  btn.addEventListener("click", data.status(), false);
+  btn.addEventListener("click", data.checkStatus(), false);
 }
