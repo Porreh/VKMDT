@@ -32,16 +32,16 @@ class Parser {
   constructor() {
 
   }
-  
+
   split() {
-    
+
   }
-  
+
 }
 
 class LinkGenerator {
   constructor() {
-    
+
   }
 }
 
@@ -54,18 +54,9 @@ class VKData {
 
   logIn(response) {
     if(response.status == 'connected') {
-      if(typeof(response.session.user) == 'undefined') {
-        VK.Api.call('users.get', { uid: response.session.mid }, function(r) { 
-          console.log(r);
-          //console.log(r.response[0].first_name);
-          //console.log(r.response[0].last_name);
-          //console.log(response.session.mid);
-        });
-      } else {   
-        console.log(response.session.mid);
-        console.log(response.session.user.first_name);
-        console.log(response.session.user.last_name);
-      } 
+      VK.Api.call('users.get', { uid: response.session.mid }, function(r) { 
+        this.id = r.response[0].session.mid;
+      });
     } else {
       VK.Auth.login(this.logIn);
     }
@@ -82,3 +73,5 @@ class VKData {
 
 let data = new VKData();
 data.start();
+
+// VK.Auth.getLoginStatus(x => console.log(x.session.mid));
