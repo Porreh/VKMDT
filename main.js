@@ -90,8 +90,8 @@ let data = new VKI();
 let musicList = data.getMusicData();
 console.log(musicList);
 
-let downloader = new Downloader(musicList);
-downloader.getFiles();
+//let downloader = new Downloader(musicList);
+//downloader.getFiles();
 
 
 
