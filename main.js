@@ -47,8 +47,9 @@ class LinkGenerator {
 
 class VKI {
   constructor() {
-    this.id;
   }
+  
+  let id;
 
   logOut() {
     VK.Auth.logout(x => console.log(x));
@@ -67,9 +68,8 @@ class VKI {
       VK.Auth.login(this.logIn, 8);
     } else {
       console.log('already connected');
-      let id = response.session.mid;
+      id = response.session.mid;
       console.log(id);
-      this.id = id;
     }
   }
 
