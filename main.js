@@ -45,14 +45,12 @@ class LinkGenerator {
   }
 }
 
-class VKData {
+class VKI {
   constructor() {
   }
-  
-  let id;
 
   logIn(response) {
-    if(response.status == 'connected') {
+    if(response.status === 'connected') {
       VK.Api.call('users.get', { uid: response.session.mid }, function(r) { 
         id = r.response[0];
       });
@@ -61,12 +59,18 @@ class VKData {
     }
   }
 
+  getStatus() {
+    VK.Auth.getLoginStatus(x => console.log(x.status));
+  }
+
+  getUID() {
+
+  }
+
   start() {
     VK.Auth.getLoginStatus(this.logIn);
   }
 }
 
-let data = new VKData();
+let data = new VKI();
 data.start();
-
-// VK.Auth.getLoginStatus(x => console.log(x.session.mid));
