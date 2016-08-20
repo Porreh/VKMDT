@@ -59,17 +59,10 @@ class VKI {
   }
   
   getID() {
-    return this.id;
+    console.log(this.id);
   }
 
   logIn(response) {
-    function getID(userID) {
-      console.log(userID);
-      VK.Api.call('users.get', { uid: userID }, function(x) { 
-        console.log(x.response[0].uid);
-      });
-    }
-
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(this.logIn, 8);
     } else {
