@@ -58,6 +58,10 @@ class VKI {
       VK.Auth.login(this.logIn);
     }
   }
+  
+  logOut() {
+    VK.Auth.logout(x => console.log(x));
+  }
 
   getStatus() {
     VK.Auth.getLoginStatus(x => console.log(x.status));
