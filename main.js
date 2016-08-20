@@ -50,15 +50,13 @@ class VKI {
   }
 
   logIn(response) {
-    if(response.status === 'connected') {
-      VK.Api.call('users.get', { uid: response.session.mid }, function(r) { 
-        id = r.response[0];
-      });
+    if(response.status == 'connected') {
+      this.getUID(response.session.mid);
     } else {
       VK.Auth.login(this.logIn);
     }
   }
-  
+
   logOut() {
     VK.Auth.logout(x => console.log(x));
   }
@@ -67,8 +65,10 @@ class VKI {
     VK.Auth.getLoginStatus(x => console.log(x.status));
   }
 
-  getUID() {
-
+  getUID(id) {
+    VK.Api.call('users.get', { uid: id }, function(r) { 
+      console.log(r.response[0]);
+    });
   }
 
   start() {
