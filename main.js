@@ -78,7 +78,7 @@ class VKI {
 
 let data = new VKI();
 
-let btn = document.querySelector(".startbutton");
-btn.addEventListener("click", data.start(), false);
-
-
+window.onload = function() {
+  let btn = document.querySelector(".startbutton");
+  btn.addEventListener("click", data.start(), false);
+}
