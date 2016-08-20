@@ -58,14 +58,14 @@ class VKI {
     this._id = newID;
   }
 
-  getMusic() {
+  getMusicData() {
     let musicData = [];
-    VK.Api.call('audio.get', {owner_id: 137768020}, function(x) {
+    VK.Api.call('audio.get', {owner_id: 137768020}, function(x) { // Chenge ID
       for(let i = 1; i < x.response[0]; i++) {
-        let name = x.response[i].aid;
-        let url = x.response[i].url;
-        let artist = x.response[i].artist;
-        let title = x.response[i].title;
+        let name = x.response[i].aid,
+            url = x.response[i].url,
+            artist = x.response[i].artist,
+            title = x.response[i].title;
         musicData.push({information: {'name': name, 'artist': artist, 'title': title}, 'url': url});
       }
     });
@@ -96,7 +96,7 @@ class VKI {
 }
 
 let data = new VKI();
-let musicList = data.getMusic();
+let musicList = data.getMusicData();
 console.log(musicList);
 
 window.onload = function() {
