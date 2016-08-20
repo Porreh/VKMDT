@@ -58,7 +58,7 @@ class VKI {
             url = x.response[i].url,
             artist = x.response[i].artist,
             title = x.response[i].title;
-        musicData.push({information: {'name': name, 'artist': artist, 'title': title}, 'url': url});
+        musicData.push({information: {'name': name, 'artist': artist, 'title': title}, 'url': 'https://crossorigin.me/'url});
       }
     });
     return musicData;
