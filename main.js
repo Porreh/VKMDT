@@ -64,9 +64,9 @@ class VKData {
         fname = response.session.user.first_name;
         lname = response.session.user.last_name;
         id = response.session.mid;
-      } else {
-        VK.Auth.login(logIn);
-      }
+      } 
+    } else {
+      VK.Auth.login(logIn);
     }
   }
 
