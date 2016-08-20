@@ -60,9 +60,7 @@ class VKI {
 
   getMusic() {
     VK.Api.call('users.get', {user_ids: this.uID}, function(r) {
-      if(r.response) {
-        alert('Привет, ' + r.response[0].first_name);
-      }
+      console.log(r);
     });
   }
 
