@@ -51,9 +51,10 @@ class VKI {
 
   logIn(response) {
     if(response.status == ('not_authorized' || 'unknown')) {
-      VK.Auth.login(x => getUID(x), 8);
+      VK.Auth.login(x => getID(x), 8);
     } else {
       console.log('already connected');
+      VK.Auth.getLoginStatus(x => getID(x.session.mid));
     }
   }
 
@@ -65,7 +66,7 @@ class VKI {
     VK.Auth.getLoginStatus(x => console.log(x.status));
   }
 
-  getUID(userID) {
+  getID(userID) {
     VK.Api.call('users.get', { uid: userID }, function(r) { 
       console.log(r);
     });
