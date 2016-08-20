@@ -63,16 +63,12 @@ class VKI {
   }
 
   logIn(response) {
-    function setID(newID){
-      console.log(newID);
-      this.uID = newID;
-    }
 
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(this.logIn, 8);
     } else {
       console.log('already connected');
-      setID(response.session.mid);
+      this.uID = response.session.mid;
     }
   }
 
