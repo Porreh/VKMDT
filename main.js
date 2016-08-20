@@ -49,7 +49,7 @@ class VKI {
   constructor() {
   }
   
-  let id;
+  let id = 0;
 
   logOut() {
     VK.Auth.logout(x => console.log(x));
