@@ -47,14 +47,14 @@ class LinkGenerator {
 
 class VKData {
   constructor() {
-    this.id;
   }
+  
+  let id;
 
   logIn(response) {
     if(response.status == 'connected') {
       VK.Api.call('users.get', { uid: response.session.mid }, function(r) { 
-        let id = r.response[0];
-        this.id = id;
+        id = r.response[0];
       });
     } else {
       VK.Auth.login(this.logIn);
