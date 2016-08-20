@@ -69,7 +69,8 @@ class VKI {
       VK.Auth.login(this.logIn, 8);
     } else {
       console.log('already connected');
-      this.uID = response.session.mid;
+      uID = response.session.mid;
+      console.log(response.session.mid);
     }
   }
 
