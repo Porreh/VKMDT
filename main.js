@@ -48,16 +48,7 @@ class LinkGenerator {
 class VKI {
   constructor() {
   }
-
-  logIn(response) {
-    if(response.status == ('not_authorized' || 'unknown')) {
-      VK.Auth.login(x => this.getID(x), 8);
-    } else {
-      console.log('already connected');
-      this.getID(response.session.mid);
-    }
-  }
-
+  
   logOut() {
     VK.Auth.logout(x => console.log(x));
   }
@@ -70,6 +61,15 @@ class VKI {
     VK.Api.call('users.get', { uid: userID }, function(r) { 
       console.log(r);
     });
+  }
+  
+  logIn(response) {
+    if(response.status == ('not_authorized' || 'unknown')) {
+      VK.Auth.login(x => this.getID(x), 8);
+    } else {
+      console.log('already connected');
+      this.getID(response.session.mid);
+    }
   }
 
   start() {
