@@ -66,7 +66,6 @@ class VKI {
   }
 
   getUID(id) {
-    let id = id;
     VK.Api.call('users.get', { uid: ${id} }, function(r) { 
       console.log(r);
     });
