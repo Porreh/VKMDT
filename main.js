@@ -45,11 +45,4 @@ class LinkGenerator {
   }
 }
 
-let music = new Downloader();
-music.getFiles(['https://psv4.vk.me/c613129/u156351840/audios/27f10b855687.mp3?extra=J7MzRDFDcVFvslkcncOdqYZdj0JSwoONHSc_Y_Zv7UTMzDN2fE7qjAC3aYwLi23cvQJLEwGBpeG0pHdF46GpSukFe8HL2eKfgHsxGjAhw5FTh96de5qxsHezRjiWTXD8jXir0P8mmqudnw']);
-
-VK.Api.call('users.get', {user_ids: 6492}, function(r) {
-  if(r.response) {
-    alert('Привет, ' + r.response[0].first_name);
-  }
-});
+let au = VK.Auth.login();
