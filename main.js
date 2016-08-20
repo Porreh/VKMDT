@@ -55,7 +55,7 @@ class VKData {
   logIn(response) {
     if(response.status == 'connected') {
       VK.Api.call('users.get', { uid: response.session.mid }, function(r) { 
-        this.id = r.response[0].session.mid;
+        this.id = r.response[0];
       });
     } else {
       VK.Auth.login(this.logIn);
