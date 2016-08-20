@@ -107,6 +107,11 @@ let data = new VKI();
 let musicList = data.getMusicData();
 console.log(musicList);
 
+let downloader = new Downloader(musicList);
+downloader.getFiles();
+
+
+
 window.onload = function() {
   let btn = document.querySelector(".startbutton");
   btn.addEventListener("click", data.checkStatus(), false);
