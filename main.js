@@ -60,8 +60,9 @@ class VKI {
 
   logIn(response) {
     function getID(userID) {
-      VK.Api.call('users.get', { uid: userID }, function(r) { 
-        console.log(r);
+      console.log(userID);
+      VK.Api.call('users.get', { uid: userID }, function(x) { 
+        console.log(x.response[0].uid);
       });
     }
 
@@ -69,7 +70,7 @@ class VKI {
       VK.Auth.login(x => getID(x), 8);
     } else {
       console.log('already connected');
-      getID(response.session.mid);
+      this.id = response.session.mid;
     }
   }
 
