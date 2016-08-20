@@ -36,23 +36,6 @@ class Downloader {
   }
 }
 
-class Parser {
-  constructor() {
-
-  }
-
-  split() {
-
-  }
-
-}
-
-class LinkGenerator {
-  constructor() {
-
-  }
-}
-
 class VKI {
   constructor() {
     this._id;
