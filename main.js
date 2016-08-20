@@ -49,7 +49,7 @@ class VKI {
   constructor() {
   }
   
-  let id = 0;
+  let uid;
 
   logOut() {
     VK.Auth.logout(x => console.log(x));
@@ -60,7 +60,7 @@ class VKI {
   }
   
   getID() {
-    console.log(this.id);
+    console.log(uid);
   }
 
   logIn(response) {
@@ -69,7 +69,7 @@ class VKI {
     } else {
       console.log('already connected');
       id = response.session.mid;
-      console.log(id);
+      console.log(uid);
     }
   }
 
