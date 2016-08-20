@@ -3,8 +3,13 @@ class Downloader {
     this.linkList = linkList;
   }
 
-  saveFile(url) {
-    let filename = url.substring(url.lastIndexOf("/") + 1).split("?")[0];
+  saveFile(url, artist, title) {
+    let filename;
+    if((artist && title) == 'undefined') {
+      filename = url.substring(url.lastIndexOf("/") + 1).split("?")[0];
+    } else {
+      filename = `${artist} - ${title}.mp3`;
+    }
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'blob';
     xhr.onload = function() {
@@ -22,7 +27,10 @@ class Downloader {
 
   getFiles(linkList) {
     for(let link of (this.linkList || linkList)) {
-      this.saveFile(link);
+      //for(let obj of link) {
+      //  
+      //}
+      this.saveFile(link, artist, title);
       console.log(link);
     }
   }
