@@ -58,13 +58,20 @@ class VKI {
     this._id = newID;
   }
 
+  getMusic() {
+    VK.Api.call('users.get', {user_ids: this.uID}, function(r) {
+      if(r.response) {
+        alert('Привет, ' + r.response[0].first_name);
+      }
+    });
+  }
+
   logIn(response) {
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(this.logIn, 8);
     } else {
       console.log('already connected');
       this.uID = response.session.mid;
-      console.log(this.uID);
     }
   }
 
@@ -75,13 +82,14 @@ class VKI {
   checkStatus() {
     VK.Auth.getLoginStatus(this.logIn);
   }
-  
+
   getStatus() {
     VK.Auth.getLoginStatus(x => console.log(x.status));
   }
 }
 
 let data = new VKI();
+data.getMusic();
 
 window.onload = function() {
   let btn = document.querySelector(".startbutton");
