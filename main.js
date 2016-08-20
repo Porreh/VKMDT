@@ -47,15 +47,19 @@ class LinkGenerator {
 
 class VKI {
   constructor() {
-    this.id;
+    this._id;
+  }
+
+  get uID() {
+    return this._id;
+  }
+
+  set uID(newID) {
+    this._id = newID;
   }
 
   getStatus() {
     VK.Auth.getLoginStatus(x => console.log(x.status));
-  }
-
-  getID() {
-    console.log(this.id);
   }
 
   logIn(response) {
@@ -67,7 +71,7 @@ class VKI {
       VK.Auth.login(this.logIn, 8);
     } else {
       console.log('already connected');
-      //setID(response.session.mid);
+      uID(response.session.mid);
       console.log(response.session.mid);
     }
   }
