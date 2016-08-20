@@ -30,7 +30,7 @@ class Downloader {
       //for(let obj of link) {
       //  
       //}
-      this.saveFile(link, artist, title);
+      //this.saveFile(link, artist, title);
       console.log(link);
     }
   }
