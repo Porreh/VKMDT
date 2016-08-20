@@ -47,7 +47,7 @@ class LinkGenerator {
 
 class VKI {
   constructor() {
-    this._id;
+    this._id = 0;
   }
 
   get uID() {
