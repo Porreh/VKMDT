@@ -50,10 +50,10 @@ class VKI {
   }
 
   logIn(response) {
-    if(response.status == 'connected') {
-      this.getUID(response.session.mid);
+    if(response.status == ('not_authorized' || 'unknown')) {
+      VK.Auth.login(x => console.log(x), 8);
     } else {
-      VK.Auth.login(this.logIn, 8);
+      console.log('already connected');
     }
   }
 
