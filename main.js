@@ -61,10 +61,8 @@ class VKI {
   getMusic() {
     let musicData = {};
     VK.Api.call('audio.get', {owner_id: 137768020}, function(x) {
-      for(let i = 1; i < x.response[0]; i++) {
-        let j = 0;
-        musicData[j].push('${x.response[i].aid}': {});
-        j++;
+      for(let i = 0; i < x.response[0]; i++) {
+        musicData.push('${x.response[i].aid}': {});
       }
     });
     return musicData;
