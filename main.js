@@ -49,7 +49,7 @@ class VKI {
   constructor() {
     this.id;
   }
-  
+
   logOut() {
     VK.Auth.logout(x => console.log(x));
   }
@@ -58,20 +58,18 @@ class VKI {
     VK.Auth.getLoginStatus(x => console.log(x.status));
   }
 
-  getID(userID) {
-    VK.Api.call('users.get', { uid: userID }, function(r) { 
-      console.log(r);
-    });
-  }
-  
   logIn(response) {
+    function getID(userID) {
+      VK.Api.call('users.get', { uid: userID }, function(r) { 
+        console.log(r);
+      });
+    }
+
     if(response.status == ('not_authorized' || 'unknown')) {
-      VK.Auth.login(function(x) {
-        this.getID(x);
-      }, 8);
+      VK.Auth.login(x => getID(x), 8);
     } else {
       console.log('already connected');
-      this.getID(response.session.mid);
+      getID(response.session.mid);
     }
   }
 
