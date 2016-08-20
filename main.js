@@ -28,6 +28,7 @@ class Downloader {
   getFiles(linkList) {
     for(let obj of (this.linkList || linkList)) {
       console.log(obj.url);
+      this.saveFile(obj.url, obj.artist, obj.title);
     }
   }
 }
