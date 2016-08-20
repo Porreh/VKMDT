@@ -66,7 +66,7 @@ class VKI {
         let url = x.response[i].url;
         let artist = x.response[i].artist;
         let title = x.response[i].title;
-        musicData.push(name: {});
+        musicData.push([name]: {});
         musicData[name].push('url': url, 'artist': artist, 'title': title);
       }
     });
