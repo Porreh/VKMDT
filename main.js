@@ -64,7 +64,7 @@ class VKI {
       console.log(x);
       for(let i = 2; i > x.response[0]; i++) {
         let j = 0;
-        data[j] = {x.response[i].aid: {}};
+        data[j] = {'${x.response[i].aid}': {}};
         j++;
     }
       return data;
