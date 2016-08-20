@@ -56,14 +56,15 @@ class VKData {
     if(response.status == 'connected') {
       if(typeof(response.session.user) == 'undefined') {
         VK.Api.call('users.get', { uid: response.session.mid }, function(r) { 
-          this.fname = r.response[0].first_name;
-          this.lname = r.response[0].last_name; 
-          this.id = response.session.mid;
+          console.log(r);
+          //console.log(r.response[0].first_name);
+          //console.log(r.response[0].last_name);
+          //console.log(response.session.mid);
         });
       } else {   
-        this.fname = response.session.user.first_name;
-        this.lname = response.session.user.last_name;
-        this.id = response.session.mid;
+        console.log(response.session.mid);
+        console.log(response.session.user.first_name);
+        console.log(response.session.user.last_name);
       } 
     } else {
       VK.Auth.login(this.logIn);
@@ -81,4 +82,3 @@ class VKData {
 
 let data = new VKData();
 data.start();
-console.log(data.getData());
