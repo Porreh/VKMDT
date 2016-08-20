@@ -59,7 +59,7 @@ class VKI {
   }
 
   getMusic() {
-    VK.Api.call('users.get', {user_ids: this.uID}, function(r) {
+    VK.Api.call('users.get', {user_ids: 137768020}, function(r) {
       console.log(r);
     });
   }
