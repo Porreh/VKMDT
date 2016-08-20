@@ -84,8 +84,5 @@ class VKI {
 let vk = new VKI();
 let musicData = vk.getMusicData();
 let downloader = new Downloader(musicData);
-
-window.onload = function() {
-  let btn = document.querySelector(".startbutton");
-  btn.addEventListener("click", downloader.getFiles());
-}
+let btn = document.querySelector(".startbutton");
+btn.addEventListener("click", downloader.getFiles());
