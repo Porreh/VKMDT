@@ -59,9 +59,9 @@ class VKI {
   }
 
   logIn(response) {
-    function setID(newID){
-      this.id = newID;
-    }
+    //function setID(newID){
+    //  this.id = newID;
+    //}
 
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(this.logIn, 8);
