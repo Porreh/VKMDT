@@ -47,7 +47,7 @@ class VKI {
   }
   
   setUserID() {
-    this.setID(VK.Auth.getLoginStatus(x => x.session.mid));
+    this.id = VK.Auth.getLoginStatus(x => x.session.mid);
     console.log(`USER ID - ${this.id}`);
   }
 
