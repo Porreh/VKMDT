@@ -28,10 +28,6 @@ class VKI {
     this._id;
   }
 
-  get uID() {
-    return this._id;
-  }
-
   set uID(newID) {
     this._id = newID;
   }
