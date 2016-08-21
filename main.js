@@ -1,15 +1,6 @@
 class Downloader {
-  constructor(linkList) {
-    this.linkList = linkList;
-  }
-
   saveFile(url, artist, title) {
-    let filename;
-    if((artist && title) == 'undefined') {
-      filename = url.substring(url.lastIndexOf("/") + 1).split("?")[0];
-    } else {
-      filename = `${artist} - ${title}.mp3`;
-    }
+    let filename = `${artist} - ${title}.mp3`;
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'blob';
     xhr.onload = function() {
@@ -25,9 +16,8 @@ class Downloader {
     xhr.send();
   }
 
-  getFiles(linkList) {
-    for(let obj of (this.linkList || linkList)) {
-      console.log(obj.url);
+  getFiles(dataArray) {
+    for(let obj of dataArray) {
       this.saveFile(obj.url, obj.artist, obj.title);
     }
   }
@@ -46,46 +36,46 @@ class VKI {
     this._id = newID;
   }
 
-  getMusicData() {
-    let musicData = [];
-    VK.Api.call('audio.get', {owner_id: 137768020}, function(x) { // Chenge ID
+  getAudioData() {
+    let audioData = [];
+    VK.Api.call('audio.get', {owner_id: 137768020}, function(x) { // CHANGE ID TO VARIABLE
       for(let i = 1; i < x.response[0]; i++) {
         let url = x.response[i].url,
             artist = x.response[i].artist,
             title = x.response[i].title;
-        musicData.push({'artist': artist, 'title': title, 'url': url});
+        audioData.push({'url': url, 'artist': artist, 'title': title});
       }
     });
-    return musicData;
+    return audioData;
   }
 
   logIn(response) {
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(this.logIn, 8);
+      console.info('LOGIN');
     } else {
-      console.log('already connected');
-      this.uID = response.session.mid;
+      console.info('CONNECTED');
       console.log(response.session.mid);
+      this.uID = response.session.mid; // NEED SOME WORK
     }
   }
 
   logOut() {
     VK.Auth.logout(x => console.log(x));
+    console.info('LOGOUT');
   }
 
-  checkStatus() {
+  getLoginStatus() {
     VK.Auth.getLoginStatus(this.logIn);
   }
-
-  getStatus() {
-    VK.Auth.getLoginStatus(x => console.log(x.status));
-  }
 }
 
-let vk = new VKI();
-let musicData = vk.getMusicData();
-let downloader = new Downloader(musicData);
-let btn = document.querySelector(".startbutton");
-if(btn) {
-  btn.addEventListener("click", downloader.getFiles());
-}
+//let vk = new VKI();
+//let downloader = new Downloader();
+
+//let musicData = vk.getMusicData();
+
+//let btn = document.querySelector(".startbutton");
+//if(btn) {
+//  btn.addEventListener("click", downloader.getFiles());
+//}
