@@ -50,7 +50,6 @@ class VKI {
   }
 
   logIn(response) {
-    this.uID = id;
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(x => console.log(x), 8);
       console.info('LOGIN');
@@ -59,6 +58,7 @@ class VKI {
       console.log(response.session.mid);
       let id = response.session.mid; // NEED SOME WORK
     }
+    this.uID = id;
   }
 
   logOut() {
