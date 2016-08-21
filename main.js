@@ -78,7 +78,7 @@ class VKI {
 let vk = new VKI();
 let downloader = new Downloader();
 
-let musicData = vk.getAudioData();
+//let musicData = vk.getAudioData();
 
 //let btn = document.querySelector(".startbutton");
 //if(btn) {
