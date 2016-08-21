@@ -65,39 +65,15 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
-    let status = VK.Auth.getLoginStatus(x => x.status);
+    let response = VK.Auth.getLoginStatus(x => x);
+    let status = response.status;
     if(status !== 'connected') {
       if(self.logIn() == 'connected') {
-        self.setUserID();
+        self.setUserID(response.session.mid);
       }
     } else {
-      self.setUserID();
+      self.setUserID(response.session.mid);
     }
-    
-    // VK.Auth.getLoginStatus(function(response) {
-    //   if(response.status !== 'connected') {
-    //     if(self.logIn() == 'connected') {
-    //       console.log(2);
-    //       //self.setUserID();
-    //     }
-    //   } else {
-    //     console.log(CNCTD);
-    //   }
-    // });
-    
-    // VK.Auth.getLoginStatus(function(response) {
-    //   if (response.session) {
-    //     console.log(1);
-    //     //self.setUserID();
-    //   } else {
-    //     if(self.logIn() == 'connected') {
-    //       console.log(2);
-    //       //self.setUserID();
-    //     }
-    //     console.log(3);
-    //     //self.setUserID();
-    //   }
-    // });
   }
 }
 
