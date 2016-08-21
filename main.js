@@ -47,7 +47,6 @@ class VKI {
   }
 
   logIn(response, self) {
-    let reSelf = self;
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(x => self.logIn(x, self), 8);
       console.info('LOGIN');
@@ -65,7 +64,9 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
-    VK.Auth.getLoginStatus((x) => this.logIn(x, self));
+    while(VK.Auth.getLoginStatus(x.status) == 'connected') {
+      VK.Auth.getLoginStatus((x) => this.logIn(x, self));
+    }
   }
 }
 
