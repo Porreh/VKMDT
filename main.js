@@ -73,7 +73,6 @@ class VKI {
     } else {
       this.setUserID();
     }
-    }
     
     // VK.Auth.getLoginStatus(function(response) {
     //   if(response.status !== 'connected') {
