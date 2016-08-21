@@ -59,13 +59,14 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
+    let session = VK.Auth.getSession(x => x);
     let status = VK.Auth.getLoginStatus(x => x.status);
     if(status !== 'connected') {
       if(self.logIn() == 'connected') {
-        self.setID(VK.Auth.getLoginStatus(x => x.session.mid));
+        self.setID(session.mid);
       }
     } else {
-      self.setID(VK.Auth.getLoginStatus(x => x.session.mid));
+      self.setID(session.mid);
     }
   }
 }
