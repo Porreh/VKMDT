@@ -25,12 +25,12 @@ class Downloader {
 
 class VKI {
   constructor() {
-    this._id;
+    this.id;
   }
 
   getAudioData() {
     let audioData = [];
-    VK.Api.call('audio.get', {owner_id: this._id}, function(x) { // CHANGE ID TO VARIABLE
+    VK.Api.call('audio.get', {owner_id: this.id}, function(x) { // CHANGE ID TO VARIABLE
       for(let i = 1; i < x.response[0]; i++) {
         let url = x.response[i].url,
             artist = x.response[i].artist,
@@ -42,16 +42,16 @@ class VKI {
   }
 
   logIn(response) {
-    let id;
+    let idi;
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(x => console.log(x), 8);
       console.info('LOGIN');
     } else {
       console.info('CONNECTED');
       console.log(response.session.mid);
-      id = response.session.mid; // NEED SOME WORK
+      idi = response.session.mid; // NEED SOME WORK
     }
-    this._id = id;
+    this.id = idi;
   }
 
   logOut() {
