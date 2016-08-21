@@ -51,8 +51,8 @@ class VKI {
       VK.Auth.login(x => function(x) {
         console.log(x);
         console.info('LOGIN');
-        console.log(`USER ID - ${}`);
-        self.setID();
+        console.log(`USER ID - ${123456789}`);
+        self.setID(123456789);
       }, 8);
     } else {
       console.info('CONNECTED');
