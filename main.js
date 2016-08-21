@@ -35,7 +35,7 @@ class VKI {
   getAllAudioData(ID) {
     let audioData = [];
     let id = (ID) ? ID : this.id;
-    VK.Api.call('audio.get', {owner_id: id, count: 6000}, function(x) {
+    VK.Api.call('audio.get', {owner_id: id}, function(x) {
       for(let i = 1; i < x.response.length; i++) {
         let url = x.response[i].url,
             artist = x.response[i].artist,
@@ -64,7 +64,7 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
-    VK.Auth.getLoginStatus(this.logIn, self);
+    VK.Auth.getLoginStatus((x) => this.logIn(x, self));
   }
 }
 
