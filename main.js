@@ -35,19 +35,14 @@ class VKI {
   getAudioData(ID) {
     let audioData = [];
     let id = (ID) ? ID : this.id;
-    
-    function getData(id) {
-      VK.Api.call('audio.get', {owner_id: id}, function(x) { // CHANGE ID TO VARIABLE
-        for(let i = 1; i < x.response.length - 1; i++) {
-          let url = x.response[i].url,
-              artist = x.response[i].artist,
-              title = x.response[i].title;
-          audioData.push({'url': url, 'artist': artist, 'title': title});
-        }
-      });
-    }
-    
-    getData(id);
+    VK.Api.call('audio.get', {owner_id: id}, function(x) { // CHANGE ID TO VARIABLE
+      for(let i = 1; i < x.response.length; i++) {
+        let url = x.response[i].url,
+            artist = x.response[i].artist,
+            title = x.response[i].title;
+        audioData.push({'url': url, 'artist': artist, 'title': title});
+      }
+    });
     return audioData;
   }
 
