@@ -46,12 +46,6 @@ class VKI {
     });
     return audioData;
   }
-  
-  setUserID() {
-    let response = VK.Auth.getSession(x => x);
-    this.setID(response.mid);
-    console.log(`USER ID - ${this.id}`);
-  }
 
   logIn() {
     console.info('LOGIN');
