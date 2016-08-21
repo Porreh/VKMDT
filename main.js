@@ -62,10 +62,12 @@ class VKI {
     let session = VK.Auth.getSession(x => x);
     let status = VK.Auth.getLoginStatus(x => x.status);
     if(status !== 'connected') {
+      console.log(`not connected`);
       if(self.logIn() == 'connected') {
         self.setID(session.mid);
       }
     } else {
+      console.log(`connected`);
       self.setID(session.mid);
     }
   }
