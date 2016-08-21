@@ -52,9 +52,7 @@ class VKI {
     return audioData;
   }
 
-  logIn(response) {
-    console.log(this);
-    let self = this;
+  logIn(response, self) {
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(x => console.log(x), 8);
       console.info('LOGIN');
@@ -71,7 +69,8 @@ class VKI {
   }
 
   getLoginStatus() {
-    VK.Auth.getLoginStatus(this.logIn);
+    let self = this;
+    VK.Auth.getLoginStatus(this.logIn, self);
   }
 }
 
