@@ -74,7 +74,7 @@ class VKI {
     if(status == 'connected') {
       self.setID(id);
     } else {
-      if(self.logIn() == 'connected') {
+      if(self.logIn()) {
         self.setID(id);
       }
     }
