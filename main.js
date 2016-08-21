@@ -47,7 +47,7 @@ class VKI {
   }
   
   setUserID() {
-    this.id = VK.Auth.getSession(x => x.mid);
+    this.setID(VK.Auth.getSession(x => x.mid));
     console.log(`USER ID - ${this.id}`);
   }
 
@@ -62,12 +62,13 @@ class VKI {
   }
 
   getLoginStatus() {
-    let status = VK.Auth.getLoginStatus(x => x.status);
-    if(status !== 'connected') {
+    VK.Auth.getLoginStatus(function(response) {
+    if (response.session) {
+      this.setUserID();
+    } else {
       if(this.logIn() == 'connected') {
         this.setUserID();
       }
-    } else {
       this.setUserID();
     }
   }
