@@ -67,12 +67,12 @@ class VKI {
     let self = this;
     VK.Auth.getLoginStatus(function(response) {
       if (response.session) {
-        self.setID(response.session.mid);
+        self.setUserID();
       } else {
         if(self.logIn() == 'connected') {
-          self.setID(response.session.mid);
+          self.setUserID();
         }
-        self.setID(response.session.mid);
+        self.setUserID();
       }
     });
   }
