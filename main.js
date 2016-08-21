@@ -52,7 +52,7 @@ class VKI {
     } else {
       console.info('CONNECTED');
       console.log(response.session.mid);
-      this.setID(response.session.mid); // NEED SOME WORK
+      setID(response.session.mid); // NEED SOME WORK
     }
   }
 
