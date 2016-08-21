@@ -46,16 +46,9 @@ class VKI {
     return audioData;
   }
 
-  logIn(response, self) {
-    if(response.status == ('not_authorized' || 'unknown')) {
-      VK.Auth.login(x => self.logIn(x, self), 8);
-      console.log(`UUU ${response.status}`);
-      console.info('LOGIN');
-    } else {
-      console.info('CONNECTED');
-      console.log(`USER ID - ${response.session.mid}`);
-      self.setID(response.session.mid);
-    }
+  logIn() {
+    VK.Auth.login(x => console.log(x), 8);
+    console.info('LOGIN');
   }
 
   logOut() {
@@ -65,7 +58,16 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
-    VK.Auth.getLoginStatus((x) => this.logIn(x, self));
+    let status = VK.Auth.getLoginStatus(x => x.status);
+    while(status == 'connected') {
+      status = VK.Auth.getLoginStatus(x => x.status);
+      this.logIn();
+      console.log(`GLS - CONNECTING...`);
+    }
+    let userID = VK.Auth.getLoginStatus(x => x.session.mid);
+    this.setID(userID);
+    console.log(`GLS - CONNECTED`);
+    console.log(`USER ID - ${this.id}`);
   }
 }
 
