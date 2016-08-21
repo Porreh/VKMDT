@@ -28,10 +28,6 @@ class VKI {
     this._id;
   }
 
-  set uID(newID) {
-    this._id = newID;
-  }
-
   getAudioData() {
     let audioData = [];
     VK.Api.call('audio.get', {owner_id: this._id}, function(x) { // CHANGE ID TO VARIABLE
@@ -55,7 +51,7 @@ class VKI {
       console.log(response.session.mid);
       id = response.session.mid; // NEED SOME WORK
     }
-    this.uID = id;
+    this._id = id;
   }
 
   logOut() {
