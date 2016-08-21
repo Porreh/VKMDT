@@ -64,7 +64,8 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
-    while(VK.Auth.getLoginStatus(x.status) == 'connected') {
+    let status = VK.Auth.getLoginStatus(x => x.status);
+    while(status == ('not_authorized' || 'unknown')) {
       VK.Auth.getLoginStatus((x) => this.logIn(x, self));
     }
   }
