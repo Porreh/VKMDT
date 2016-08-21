@@ -30,6 +30,7 @@ class VKI {
   
   setID(newID) {
     this.id = newID;
+    console.log(`USER ID - ${this.id}`);
   }
 
   getAllAudioData(ID) {
