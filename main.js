@@ -32,10 +32,10 @@ class VKI {
     this.id = newID;
   }
 
-  getAudioData(ID) {
+  getAllAudioData(ID) {
     let audioData = [];
     let id = (ID) ? ID : this.id;
-    VK.Api.call('audio.get', {owner_id: id}, function(x) {
+    VK.Api.call('audio.get', {owner_id: id, count: 6000}, function(x) {
       for(let i = 1; i < x.response.length; i++) {
         let url = x.response[i].url,
             artist = x.response[i].artist,
