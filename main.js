@@ -27,9 +27,6 @@ class VKI {
   constructor() {
     this._id = 137768020;
   }
-  
-  static ctx = this;
-  let self = VKI.ctx;
 
   get uID() {
     return this._id;
@@ -53,13 +50,14 @@ class VKI {
   }
 
   logIn(response) {
+    this.uID = id;
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(x => console.log(x), 8);
       console.info('LOGIN');
     } else {
       console.info('CONNECTED');
       console.log(response.session.mid);
-      self.uID = response.session.mid; // NEED SOME WORK
+      let id = response.session.mid; // NEED SOME WORK
     }
   }
 
