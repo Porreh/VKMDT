@@ -48,9 +48,12 @@ class VKI {
 
   logIn(response, self) {
     if(response.status == ('not_authorized' || 'unknown')) {
-      VK.Auth.login(x => console.log(x), 8);
-      console.info('LOGIN');
-      self.getLoginStatus();
+      VK.Auth.login(x => function(x) {
+        console.log(x);
+        console.info('LOGIN');
+        console.log(`USER ID - ${}`);
+        self.setID();
+      }, 8);
     } else {
       console.info('CONNECTED');
       console.log(`USER ID - ${response.session.mid}`);
