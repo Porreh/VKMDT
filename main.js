@@ -52,7 +52,7 @@ class VKI {
       function getID(obj) {
         id = obj.response;
       }
-      VK.Auth.login(x => getID(x), 8);
+      VK.Auth.login(x => console.log(x), 8);
       console.info('LOGIN');
       console.log(id);
       self.setID(123);
