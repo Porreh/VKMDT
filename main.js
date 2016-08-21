@@ -48,10 +48,13 @@ class VKI {
 
   logIn(response, self) {
     if(response.status == ('not_authorized' || 'unknown')) {
-      let responseObject;
-      VK.Auth.login(x => {responseObject = x}, 8);
+      let id;
+      function getID(obj) {
+        id = obj.response;
+      }
+      VK.Auth.login(x => getID(x), 8);
       console.info('LOGIN');
-      console.log(responseObject);
+      console.log(id);
       self.setID(123);
     } else {
       console.info('CONNECTED');
