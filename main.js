@@ -25,7 +25,7 @@ class Downloader {
 
 class VKI {
   constructor() {
-    this._id = 137768020;
+    this._id;
   }
 
   get uID() {
