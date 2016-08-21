@@ -45,10 +45,16 @@ class VKI {
     });
     return audioData;
   }
+  
+  setUserID() {
+    let userID = VK.Auth.getLoginStatus(x => x.session.mid);
+    this.setID(userID);
+    console.log(`USER ID - ${this.id}`);
+  }
 
   logIn() {
-    VK.Auth.login(x => console.log(x), 8);
     console.info('LOGIN');
+    return VK.Auth.login(x => x.status, 8);
   }
 
   logOut() {
@@ -57,14 +63,14 @@ class VKI {
   }
 
   getLoginStatus() {
-    let self = this;
     let status = VK.Auth.getLoginStatus(x => x.status);
-    this.logIn();
-    console.log(`GLS - CONNECTING...`);
-    let userID = VK.Auth.getLoginStatus(x => x.session.mid);
-    this.setID(userID);
-    console.log(`GLS - CONNECTED`);
-    console.log(`USER ID - ${this.id}`);
+    if(status !== 'connected') {
+      if(this.logIn() == 'connected') {
+        this.setUserID();
+      }
+    } else {
+      this.setUserID
+    }
   }
 }
 
