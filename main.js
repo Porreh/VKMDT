@@ -69,10 +69,10 @@ class VKI {
     let status = response.status;
     if(status !== 'connected') {
       if(self.logIn() == 'connected') {
-        self.setUserID(response.session.mid);
+        self.setID(response.session.mid);
       }
     } else {
-      self.setUserID(response.session.mid);
+      self.setID(response.session.mid);
     }
   }
 }
