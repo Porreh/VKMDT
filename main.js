@@ -69,7 +69,7 @@ class VKI {
       if (response.session) {
         self.setID(response.session.mid);
       } else {
-        if(this.logIn() == 'connected') {
+        if(self.logIn() == 'connected') {
           self.setID(response.session.mid);
         }
         self.setID(response.session.mid);
