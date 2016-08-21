@@ -71,14 +71,12 @@ class VKI {
     
     console.log(status);
     
-    if(status !== 'connected') {
-      console.log(`not connected`);
-      if(self.logIn() == 'connected') {
-        self.setID(session.mid);
-      }
+    if(status == 'connected') {
+      self.setID(id);
     } else {
-      console.log(`connected`);
-      self.setID(session.mid);
+      if(self.logIn() == 'connected') {
+        self.setID(id);
+      }
     }
   }
 }
