@@ -25,8 +25,10 @@ class Downloader {
 
 class VKI {
   constructor() {
-    this._id;
+    this._id = 137768020;
   }
+  
+  let self = this;
 
   get uID() {
     return this._id;
@@ -38,7 +40,7 @@ class VKI {
 
   getAudioData() {
     let audioData = [];
-    VK.Api.call('audio.get', {owner_id: 137768020}, function(x) { // CHANGE ID TO VARIABLE
+    VK.Api.call('audio.get', {owner_id: this._id}, function(x) { // CHANGE ID TO VARIABLE
       for(let i = 1; i < x.response[0]; i++) {
         let url = x.response[i].url,
             artist = x.response[i].artist,
@@ -50,7 +52,6 @@ class VKI {
   }
 
   logIn(response) {
-    let self = this;
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(x => console.log(x), 8);
       console.info('LOGIN');
@@ -71,8 +72,8 @@ class VKI {
   }
 }
 
-//let vk = new VKI();
-//let downloader = new Downloader();
+let vk = new VKI();
+let downloader = new Downloader();
 
 //let musicData = vk.getMusicData();
 
