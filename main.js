@@ -59,11 +59,8 @@ class VKI {
   getLoginStatus() {
     let self = this;
     let status = VK.Auth.getLoginStatus(x => x.status);
-    while(status !== 'connected') {
-      status = VK.Auth.getLoginStatus(x => x.status);
-      this.logIn();
-      console.log(`GLS - CONNECTING...`);
-    }
+    this.logIn();
+    console.log(`GLS - CONNECTING...`);
     let userID = VK.Auth.getLoginStatus(x => x.session.mid);
     this.setID(userID);
     console.log(`GLS - CONNECTED`);
