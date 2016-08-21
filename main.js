@@ -51,7 +51,7 @@ class VKI {
       let responseObject;
       VK.Auth.login(x => {responseObject = x}, 8);
       console.info('LOGIN');
-      console.log(x);
+      console.log(responseObject);
       self.setID(123);
     } else {
       console.info('CONNECTED');
