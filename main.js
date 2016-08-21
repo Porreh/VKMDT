@@ -27,6 +27,10 @@ class VKI {
   constructor() {
     this.id;
   }
+  
+  setID(newID) {
+    this.id = newID;
+  }
 
   getAudioData() {
     let audioData = [];
@@ -42,16 +46,14 @@ class VKI {
   }
 
   logIn(response) {
-    let idi;
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(x => console.log(x), 8);
       console.info('LOGIN');
     } else {
       console.info('CONNECTED');
       console.log(response.session.mid);
-      idi = response.session.mid; // NEED SOME WORK
+      this.setID(response.session.mid;) // NEED SOME WORK
     }
-    this.id = idi;
   }
 
   logOut() {
