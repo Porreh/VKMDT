@@ -28,7 +28,8 @@ class VKI {
     this._id = 137768020;
   }
   
-  let self = this;
+  static ctx = this;
+  let self = VKI.ctx;
 
   get uID() {
     return this._id;
