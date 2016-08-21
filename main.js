@@ -69,7 +69,7 @@ class VKI {
         this.setUserID();
       }
     } else {
-      this.setUserID
+      this.setUserID();
     }
   }
 }
