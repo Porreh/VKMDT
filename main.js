@@ -63,13 +63,14 @@ class VKI {
 
   getLoginStatus() {
     VK.Auth.getLoginStatus(function(response) {
-    if (response.session) {
-      this.setUserID();
-    } else {
-      if(this.logIn() == 'connected') {
+      if (response.session) {
+        this.setUserID();
+      } else {
+        if(this.logIn() == 'connected') {
+          this.setUserID();
+        }
         this.setUserID();
       }
-      this.setUserID();
     }
   }
 }
