@@ -46,6 +46,7 @@ class VKI {
   }
 
   logIn(response) {
+    console.log(this);
     let self = this;
     if(response.status == ('not_authorized' || 'unknown')) {
       VK.Auth.login(x => console.log(x), 8);
