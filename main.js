@@ -47,7 +47,7 @@ class VKI {
   
   getUserID() {
     let userID;
-    this.getLoginStatus(response => userID = response.mid);
+    this.getLoginStatus(response => userID = response.session.mid);
     this.setID(userID);
   }
 
