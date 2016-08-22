@@ -108,7 +108,8 @@ let downloader = new Downloader();
 
 //let musicData = vk.getAudioData();
 
-//let btn = document.querySelector(".startbutton");
-//if(btn) {
-//  btn.addEventListener("click", downloader.getFiles());
-//}
+let btn = document.querySelector(".startbutton");
+btn.addEventListener("click", function(event){
+	event.preventDefault();
+	vk.getLoginStatus();
+});
