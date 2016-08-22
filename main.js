@@ -71,13 +71,13 @@ class VKI {
     this.getLoginStatus(x => response = x.status);
     
     function status() {
-    	if(response == 'connected') {
-    		console.log(`true`);
-    		return true;
-    	} else {
-    		console.log(`false`)
-    		return true; // CHANGE
-    	}
+      if(response == 'connected') {
+        console.log(`status true`);
+        return true;
+      } else {
+        console.log(`status false`)
+        return true; // CHANGE
+      }
     }
     
     if(status()) {
