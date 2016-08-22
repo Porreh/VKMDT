@@ -55,7 +55,9 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
-    if(VK.Auth.getLoginStatus(x => x.status) == 'connected') {
+    let status;
+    VK.Auth.getLoginStatus(x => status = x.session);
+    if(status) {
       self.getUserID();
     } else {
       VK.Observer.subscribe('auth.login', x => self.getUserID());
