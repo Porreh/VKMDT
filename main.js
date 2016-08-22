@@ -77,7 +77,7 @@ class VKI {
       if (response.session) {
         getUserID();
       } else {
-        logIN();
+        self.logIN;
       }
     });
     
