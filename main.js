@@ -66,7 +66,7 @@ class VKI {
     }
   }
   
-  static getAllAudioData(ID) {
+  getAllAudioData(ID) {
     let audioData = [];
     let id = (ID) ? ID : this.id;
     VK.Api.call('audio.get', {owner_id: id}, function(x) {
