@@ -47,14 +47,18 @@ class VKI {
     return audioData;
   }
 
-  // logIn() {
-  //   console.info('LOGIN');
-  //   return VK.Auth.login(x => x.status, 8);
-  // }
+  logIN() {
+     VK.Auth.login(function(response) {
+        if (response.session) {
+          console.log(`Авторизация прошла успешно.`);
+        } else {
+          console.log(`Авторизация прошла неуспешно.`);
+        }
+      }, 8);
+  }
 
-  logOut() {
-    VK.Auth.logout(x => console.log(x));
-    console.info('LOGOUT');
+  logOUT() {
+    VK.Auth.logout(() => console.info('LOGOUT'));
   }
 
   getLoginStatus() {
@@ -66,17 +70,7 @@ class VKI {
       self.setID(userID);
     }
     
-    function logIN() {
-      VK.Auth.login(function(response) {
-        if (response.session) {
-          console.log(`Авторизация прошла успешно.`);
-        } else {
-          console.log(`Авторизация прошла неуспешно.`);
-        }
-      }, 8);
-    }
-    
-    VK.Observer.subscribe('auth.login', () => getUserID);
+    VK.Observer.subscribe('auth.login', x => getUserID());
     //VK.Observer.unsubscribe('auth.login', () => {});
     
     VK.Auth.getLoginStatus(function(response) {
