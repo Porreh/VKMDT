@@ -72,6 +72,7 @@ class VKI {
     }
     
     if(status == 'connected') {
+    	console.log(status);
       getUserID();
     } else {
       VK.Observer.subscribe('auth.login', x => getUserID());
