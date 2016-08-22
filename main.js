@@ -64,7 +64,7 @@ class VKI {
       let userID;
       VK.Auth.getSession(response => userID = response.mid);
       self.setID(userID);
-      console.log(`getUserID - ${userID}`);
+      console.log(userID);
     }
     
     function logIN() {
