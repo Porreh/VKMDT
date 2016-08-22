@@ -50,9 +50,9 @@ class VKI {
   logIN() {
      VK.Auth.login(function(response) {
         if (response.session) {
-          console.log(`Авторизация прошла успешно.`);
+          console.info(`Авторизация прошла успешно.`);
         } else {
-          console.log(`Авторизация прошла неуспешно.`);
+          console.info(`Авторизация прошла неуспешно.`);
         }
       }, 8);
   }
@@ -70,14 +70,13 @@ class VKI {
       self.setID(userID);
     }
     
-    VK.Observer.subscribe('auth.login', x => getUserID());
-    //VK.Observer.unsubscribe('auth.login', () => {});
-    
     VK.Auth.getLoginStatus(function(response) {
       if (response.session) {
         getUserID();
       } else {
+        VK.Observer.subscribe('auth.login', x => getUserID());
         self.logIN();
+        VK.Observer.unsubscribe('auth.login', () => {});
       }
     });
     
