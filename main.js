@@ -30,7 +30,7 @@ class VKI {
   
   setID(newID) {
     this.id = newID;
-    console.log(`USER ID - ${this.id}`);
+    console.info(`USER ID - ${this.id}`);
   }
 
   getAllAudioData(ID) {
@@ -64,7 +64,7 @@ class VKI {
       let userID;
       VK.Auth.getSession(response => userID = response.mid);
       self.setID(userID);
-      console.log(`getUserID - ${self.id}`);
+      console.log(`getUserID - ${userID}`);
     }
     
     function logIN() {
