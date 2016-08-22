@@ -67,6 +67,7 @@ class VKI {
     function getStatus() {
     	let status;
     	VK.Auth.getLoginStatus(response => status = response.status);
+    	console.log(status);
     	return status;
     }
     
