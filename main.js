@@ -55,6 +55,7 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
+    VK.Auth.getLoginStatus();
     
     function status() {
     	if(VK.Auth.getLoginStatus(x => x.status) == 'connected') {
