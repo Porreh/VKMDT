@@ -63,7 +63,7 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
-    let connectionStatus; 
+    let connectionStatus = 'connected'; 
     VK.Auth.getLoginStatus(x => connectionStatus = x.status);
     console.log(connectionStatus);
     
