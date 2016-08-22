@@ -87,7 +87,6 @@ let vk = new VKI();
 let downloader = new Downloader();
 
 //let musicData = vk.getAudioData();
-//
 
 let btn = document.querySelector(".startbutton");
 btn.addEventListener("click", function(event){
