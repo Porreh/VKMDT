@@ -34,6 +34,12 @@ class VKI {
     return object;
   }
   
+  getSession() {
+    let object;
+    VK.Auth.getSession(x => object = x);
+    return object;
+  }
+  
   setID(newID) {
     this.id = newID;
     console.info(`USER ID - ${this.id}`);
@@ -41,7 +47,7 @@ class VKI {
   
   getUserID() {
     let userID;
-    VK.Auth.getLoginStatus(response => userID = response.session.mid);
+    this.getSession(response => userID = response.mid);
     this.setID(userID);
   }
 
