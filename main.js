@@ -32,26 +32,11 @@ class VKI {
     this.id = newID;
     console.info(`USER ID - ${this.id}`);
   }
-
-  getAllAudioData(ID) {
-    let audioData = [];
-    let id = (ID) ? ID : this.id;
-    VK.Api.call('audio.get', {owner_id: id}, function(x) {
-      for(let i = 1; i < x.response.length; i++) {
-        let url = x.response[i].url,
-            artist = x.response[i].artist,
-            title = x.response[i].title;
-        audioData.push({'url': url, 'artist': artist, 'title': title});
-      }
-    });
-    return audioData;
-  }
   
-  connectionStatus() {
-  	let connectionStatus;
-  	VK.Auth.getLoginStatus(response => connectionStatus = response.status);
-  	console.log(connectionStatus);
-  	return connectionStatus;
+  getUserID() {
+    let userID;
+    VK.Auth.getLoginStatus(response => userID = response.session.mid);
+    self.setID(userID);
   }
 
   logIN() {
@@ -70,21 +55,27 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
-    let connectionStatus = self.connectionStatus();
-    
-    function getUserID() {
-      let userID;
-      VK.Auth.getLoginStatus(response => userID = response.session.mid);
-      self.setID(userID);
-    }
-    
-    if(connectionStatus == 'connected') {
-      getUserID();
+    if(VK.Auth.getLoginStatus(x => x.status) == 'connected') {
+      self.getUserID();
     } else {
-      VK.Observer.subscribe('auth.login', x => getUserID());
+      VK.Observer.subscribe('auth.login', x => self.getUserID());
       self.logIN();
       VK.Observer.unsubscribe('auth.login', () => {});
     }
+  }
+  
+  static getAllAudioData(ID) {
+    let audioData = [];
+    let id = (ID) ? ID : this.id;
+    VK.Api.call('audio.get', {owner_id: id}, function(x) {
+      for(let i = 1; i < x.response.length; i++) {
+        let url = x.response[i].url,
+            artist = x.response[i].artist,
+            title = x.response[i].title;
+        audioData.push({'url': url, 'artist': artist, 'title': title});
+      }
+    });
+    return audioData;
   }
 }
 
