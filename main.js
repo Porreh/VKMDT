@@ -69,6 +69,7 @@ class VKI {
 
   load() { // NEED WORK
     let self = this;
+    self.getLoginStatus();
     let response = self.getLoginStatus();
     
     if(response.session) {
