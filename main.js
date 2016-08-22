@@ -67,7 +67,8 @@ class VKI {
 
   load() {
     let self = this;
-    let response = self.getLoginStatus();
+    let response;
+    self.getLoginStatus(x => response = x);
     
     function status() {
     	if(response.status == 'connected') {
