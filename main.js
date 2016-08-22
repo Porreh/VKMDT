@@ -71,7 +71,7 @@ class VKI {
       self.setID(userID);
     }
     
-    if(status) {
+    if(status == 'connected') {
       getUserID();
     } else {
       VK.Observer.subscribe('auth.login', x => getUserID());
