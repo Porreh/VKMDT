@@ -52,7 +52,7 @@ class VKI {
         if (response.session) {
           console.info(`Авторизация прошла успешно.`);
         } else {
-          console.info(`Авторизация прошла неуспешно.`);
+          console.info(`Не удалось авторизироваться.`);
         }
       }, 8);
   }
@@ -63,6 +63,7 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
+    let status;
     
     function getUserID() {
       let userID;
@@ -70,15 +71,15 @@ class VKI {
       self.setID(userID);
     }
     
-    VK.Auth.getLoginStatus(function(response) {
-      if (response.session) {
-        getUserID();
-      } else {
-        VK.Observer.subscribe('auth.login', x => getUserID());
-        self.logIN();
-        VK.Observer.unsubscribe('auth.login', () => {});
-      }
-    });
+    VK.Auth.getLoginStatus(response => status = response.session);
+    
+    if(status) {
+      getUserID();
+    } else {
+      VK.Observer.subscribe('auth.login', x => getUserID());
+      self.logIN();
+      VK.Observer.unsubscribe('auth.login', () => {});
+    }
     
     // let self = this;
     // let status;
