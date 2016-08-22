@@ -75,6 +75,7 @@ class VKI {
     	console.log(status);
       getUserID();
     } else {
+    	console.log(status);
       VK.Observer.subscribe('auth.login', x => getUserID());
       self.logIN();
       VK.Observer.unsubscribe('auth.login', () => {});
