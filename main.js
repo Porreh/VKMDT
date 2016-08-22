@@ -61,7 +61,7 @@ class VKI {
     		console.log(`true`);
     		return true;
     	} else {
-    		return false;
+    		return true; // CHANGE
     	}
     }
     
