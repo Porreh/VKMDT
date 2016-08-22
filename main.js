@@ -59,25 +59,45 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
-    let status;
-    let id;
-    function saveData(response) {
-      status = response.status;
+    
+    // function getUserData() {
+    //   VK.Auth.getSession();
+    //   status = response.status;
+    //   if (response.session) {
+    //     id = response.session.mid;
+    //   }
+    // }
+    
+    function getUserID() {
+      let userID;
+      VK.Auth.getSession(response => userID = response.mid);
+      self.setID(userID);
+      console.log(`getUserID - ${response.mid}`);
+    }
+    
+    VK.Observer.subscribe('auth.login', () => getUserID);
+    //VK.Observer.unsubscribe('auth.login', () => {});
+    //VK.Auth.getLoginStatus();
+    
+    VK.Auth.getLoginStatus(function(response) {
       if (response.session) {
-        id = response.session.mid;
+        getUserID();
+      } else {
+        VK.Auth.login(function(response) {
+          if (response.session) {
+            console.log(`Авторизация прошла успешно.`);
+          } else {
+            console.log(`Авторизация прошла неуспешно.`);
+          }
+        });
       }
-    }
-    VK.Auth.getLoginStatus(saveData);
+    });
     
-    console.log(status);
-    
-    if(status == 'connected') {
-      self.setID(id);
-    } else {
-      if(self.logIn()) {
-        self.setID(id);
-      }
-    }
+    //if(status == 'connected') {
+    //  self.setID(id);
+    // } else {
+    //  
+    // }
   }
 }
 
