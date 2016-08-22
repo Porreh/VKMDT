@@ -46,26 +46,31 @@ class VKI {
     });
     return audioData;
   }
+  
+  connectionStatus() {
+  	let connectionStatus;
+  	VK.Auth.getLoginStatus(response => connectionStatus = response.status);
+  	console.log(connectionStatus);
+  	return connectionStatus;
+  }
 
   logIN() {
-     VK.Auth.login(function(response) {
-        if (response.session) {
-          console.info(`Авторизация прошла успешно.`);
-        } else {
-          console.info(`Не удалось авторизироваться.`);
-        }
-      }, 8);
+  	VK.Auth.login(function(response) {
+  		if (response.session) {
+  			console.info(`Авторизация прошла успешно.`);
+  		} else {
+  			console.info(`Не удалось авторизироваться.`);
+  		}
+  	}, 8);
   }
 
   logOUT() {
-    VK.Auth.logout(() => console.info('LOGOUT'));
+  	VK.Auth.logout(() => console.info('LOGOUT'));
   }
 
   getLoginStatus() {
     let self = this;
-    let connectionStatus = 'connected'; 
-    VK.Auth.getLoginStatus(x => connectionStatus = x.status);
-    console.log(connectionStatus);
+    let connectionStatus = self.connectionStatus();
     
     function getUserID() {
       let userID;
