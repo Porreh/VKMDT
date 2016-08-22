@@ -63,15 +63,13 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
-    let status;
+    let status = VK.Auth.getLoginStatus(response => status = response.session);;
     
     function getUserID() {
       let userID;
       VK.Auth.getLoginStatus(response => userID = response.session.mid);
       self.setID(userID);
     }
-    
-    VK.Auth.getLoginStatus(response => status = response.session);
     
     if(status) {
       getUserID();
@@ -80,27 +78,6 @@ class VKI {
       self.logIN();
       VK.Observer.unsubscribe('auth.login', () => {});
     }
-    
-    // let self = this;
-    // let status;
-    // let id;
-    // function saveData(response) {
-    //   status = response.status;
-    //   if (response.session) {
-    //     id = response.session.mid;
-    //   }
-    // }
-    // VK.Auth.getLoginStatus(saveData);
-    
-    // console.log(status);
-    
-    // if(status == 'connected') {
-    //   self.setID(id);
-    // } else {
-    //   if(self.logIn()) {
-    //     self.setID(id);
-    //   }
-    // }
   }
 }
 
