@@ -63,7 +63,8 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
-    let status = VK.Auth.getLoginStatus(response => status = response.session);
+    let status;
+    VK.Auth.getLoginStatus(response => status = response.status);
     
     function getUserID() {
       let userID;
@@ -72,10 +73,8 @@ class VKI {
     }
     
     if(status == 'connected') {
-    	console.log(status);
       getUserID();
     } else {
-    	console.log(status);
       VK.Observer.subscribe('auth.login', x => getUserID());
       self.logIN();
       VK.Observer.unsubscribe('auth.login', () => {});
