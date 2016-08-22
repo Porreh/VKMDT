@@ -71,17 +71,8 @@ class VKI {
     let self = this;
     let response = self.getLoginStatus();
     
-    //function status() {
-    //  if(response == 'connected') {
-    //    console.log(`status true`);
-    //    return true;
-    //  } else {
-    //    console.log(`status false`)
-    //    return true; // CHANGE
-    //  }
-    //}
-    
     if(response.session) {
+      console.log(`work`);
       self.getUserID();
     } else {
       VK.Observer.subscribe('auth.login', x => self.getUserID());
