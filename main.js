@@ -28,6 +28,12 @@ class VKI {
     this.id;
   }
   
+  getLoginStatus() {
+    let object;
+    VK.Auth.getLoginStatus(x => object = x);
+    return object;
+  }
+  
   setID(newID) {
     this.id = newID;
     console.info(`USER ID - ${this.id}`);
@@ -53,15 +59,16 @@ class VKI {
   	VK.Auth.logout(() => console.info('LOGOUT'));
   }
 
-  getLoginStatus() {
+  load() {
     let self = this;
-    VK.Auth.getLoginStatus();
+    let response = getLoginStatus();
     
     function status() {
-    	if(VK.Auth.getLoginStatus(x => x.status) == 'connected') {
+    	if(response.status == 'connected') {
     		console.log(`true`);
     		return true;
     	} else {
+    		console.log(`false`)
     		return true; // CHANGE
     	}
     }
@@ -98,5 +105,5 @@ let downloader = new Downloader();
 let btn = document.querySelector(".startbutton");
 btn.addEventListener("click", function(event){
 	event.preventDefault();
-	vk.getLoginStatus();
+	vk.load();
 });
