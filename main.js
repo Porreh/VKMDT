@@ -64,8 +64,8 @@ class VKI {
   getLoginStatus() {
     let self = this;
     let connectionStatus; 
-    VK.Auth.getLoginStatus(x => console.log(x.status));
     VK.Auth.getLoginStatus(x => connectionStatus = x.status);
+    console.log(connectionStatus);
     
     function getUserID() {
       let userID;
