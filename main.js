@@ -63,6 +63,7 @@ class VKI {
 
   getLoginStatus() {
     let self = this;
+    VK.Auth.getLoginStatus();
     
     function getUserID() {
       let userID;
