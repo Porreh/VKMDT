@@ -60,14 +60,6 @@ class VKI {
   getLoginStatus() {
     let self = this;
     
-    // function getUserData() {
-    //   VK.Auth.getSession();
-    //   status = response.status;
-    //   if (response.session) {
-    //     id = response.session.mid;
-    //   }
-    // }
-    
     function getUserID() {
       let userID;
       VK.Auth.getSession(response => userID = response.mid);
@@ -77,7 +69,6 @@ class VKI {
     
     VK.Observer.subscribe('auth.login', () => getUserID);
     //VK.Observer.unsubscribe('auth.login', () => {});
-    //VK.Auth.getLoginStatus();
     
     VK.Auth.getLoginStatus(function(response) {
       if (response.session) {
@@ -93,10 +84,25 @@ class VKI {
       }
     });
     
-    //if(status == 'connected') {
-    //  self.setID(id);
+    // let self = this;
+    // let status;
+    // let id;
+    // function saveData(response) {
+    //   status = response.status;
+    //   if (response.session) {
+    //     id = response.session.mid;
+    //   }
+    // }
+    // VK.Auth.getLoginStatus(saveData);
+    
+    // console.log(status);
+    
+    // if(status == 'connected') {
+    //   self.setID(id);
     // } else {
-    //  
+    //   if(self.logIn()) {
+    //     self.setID(id);
+    //   }
     // }
   }
 }
