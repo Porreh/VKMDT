@@ -33,8 +33,7 @@ class VKI {
   }
   
   getLoginStatus() {
-    let obj = VK.Auth.getLoginStatus(this.getObject);
-    return obj;
+    console.log(VK.Auth.getLoginStatus(this.getObject));
   }
   
   getSession() { // DON'T WORK
