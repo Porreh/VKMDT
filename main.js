@@ -66,7 +66,7 @@ class VKI {
     VK.Auth.logout(() => console.info('Сессия завершина.'));
   }
 
-  load() { // NEED WORK
+  load() { // DONE
     let self = this;
     let response = this.getStatus();
     
@@ -74,8 +74,6 @@ class VKI {
       self.setUserID();
     } else {
       VK.Observer.subscribe('auth.login', x => self.setUserID());
-      self.logIN();
-      //VK.Observer.unsubscribe('auth.login', () => {});
       self.logIN();
     }
   }
