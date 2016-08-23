@@ -28,25 +28,25 @@ class VKI {
     this.id;
   }
   
-  getLoginStatus() { // DONE
+  getStatus() { // DONE
     let object;
     VK.Auth.getLoginStatus(response => object = response);
     return object;
   }
   
-  //getSession() { // DON'T WORK
-  //  let object;
-  //  VK.Auth.getSession(response => object = response);
-  //  return object;
-  //}
+  getSession() { // DON'T WORK
+    let object;
+    VK.Auth.getSession(response => object = response);
+    return object;
+  }
   
   setID(newID) { // DONE
     this.id = newID;
     console.info(`USER ID - ${this.id}`);
   }
   
-  getUserID() { // NEED WORK
-    let response = this.getLoginStatus();
+  setUserID() { // DONE
+    let response = this.getStatus();
     let userID = response.session.mid;
     this.setID(userID);
   }
@@ -67,13 +67,13 @@ class VKI {
 
   load() { // NEED WORK
     let self = this;
-    let response = this.getLoginStatus();
+    let response = this.getStatus();
     
     if(response.session) {
       console.log(`work`);
-      self.getUserID();
+      self.setUserID();
     } else {
-      VK.Observer.subscribe('auth.login', x => self.getUserID());
+      VK.Observer.subscribe('auth.login', x => self.setUserID());
       self.logIN();
       VK.Observer.unsubscribe('auth.login', () => {});
     }
@@ -94,9 +94,11 @@ class VKI {
   //}
 }
 
+VK.Auth.getLoginStatus();
+VK.Auth.getSession();
 let vk = new VKI();
 let downloader = new Downloader();
-VK.Auth.getLoginStatus();
+
 
 
 //let musicData = vk.getAudioData();
