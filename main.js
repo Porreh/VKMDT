@@ -69,15 +69,14 @@ class VKI {
   }
 
   load() { // NEED WORK
-    let self = this;
-    let response = self.getLoginStatus();
+    let response = this.getLoginStatus();
     
     if(response.session) {
       console.log(`work`);
-      self.getUserID();
+      this.getUserID();
     } else {
-      VK.Observer.subscribe('auth.login', x => self.getUserID());
-      self.logIN();
+      VK.Observer.subscribe('auth.login', x => this.getUserID());
+      this.logIN();
       VK.Observer.unsubscribe('auth.login', () => {});
     }
   }
@@ -107,5 +106,5 @@ VK.Auth.getLoginStatus();
 let btn = document.querySelector(".startbutton");
 btn.addEventListener("click", function(event){
 	event.preventDefault();
-	//vk.load();
+	vk.load();
 });
