@@ -28,10 +28,10 @@ class VKI {
     this.id;
   }
   
-  getLoginStatus() {
-    var oiu;
-    VK.Auth.getLoginStatus(response => oiu = response);
-    return oiu;
+  getLoginStatus() { // DONE
+    let object;
+    VK.Auth.getLoginStatus(response => object = response);
+    return object;
   }
   
   //getSession() { // DON'T WORK
@@ -45,14 +45,14 @@ class VKI {
     console.info(`USER ID - ${this.id}`);
   }
   
-  //getUserID() { // NEED WORK
-  //  let response = this.getLoginStatus();
-  //  console.log(response);
-  //  //let userID = response.session.mid;
-  //  //console.log(userID);
-  //  //console.log(response.session.mid);
-  //  //this.setID(userID);
-  //}
+  getUserID() { // NEED WORK
+    let response = this.getLoginStatus();
+    console.log(response);
+    //let userID = response.session.mid;
+    //console.log(userID);
+    //console.log(response.session.mid);
+    //this.setID(userID);
+  }
 
   logIN() {
     VK.Auth.login(function(response) {
