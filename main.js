@@ -28,12 +28,8 @@ class VKI {
     this.id;
   }
   
-  getObject(response) {
-    return response;
-  }
-  
   getLoginStatus() {
-    console.log(VK.Auth.getLoginStatus(this.getObject));
+    console.log(VK.Auth.getLoginStatus(x => x));
   }
   
   getSession() { // DON'T WORK
