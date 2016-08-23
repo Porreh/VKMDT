@@ -97,7 +97,7 @@ VK.Auth.getLoginStatus();
 let vk = new VKI();
 let downloader = new Downloader();
 
-//downloader.getFiles(getAllAudioData());
+//downloader.getFiles(vk.getAllAudioData());
 
 let btn = document.querySelector(".startbutton");
 btn.addEventListener("click", function(event){
