@@ -69,11 +69,9 @@ class VKI {
 
   load() { // NEED WORK
     let self = this;
-    self.getLoginStatus();
     let response = self.getLoginStatus();
-    let status = response.session;
     
-    if(status) {
+    if(response.session) {
       console.log(`work`);
       self.getUserID();
     } else {
