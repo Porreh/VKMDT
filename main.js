@@ -16,9 +16,9 @@ class Downloader {
     xhr.send();
   }
 
-  getFiles(dataArray) {
-    for(let obj of dataArray) {
-      this.saveFile(obj.url, obj.artist, obj.title);
+  getFiles(audioData) {
+    for(let audio of audioData) {
+      this.saveFile(audio.url, audio.artist, audio.title);
     }
   }
 }
@@ -79,8 +79,8 @@ class VKI {
   }
   
   getAllAudioData(ID) {
-    let audioData = [];
-    let id = (ID) ? ID : this.id;
+    let audioData = [],
+        id = (ID) ? ID : this.id;
     VK.Api.call('audio.get', {owner_id: id}, function(x) {
       for(let i = 1; i < x.response.length; i++) {
         let url = x.response[i].url,
@@ -97,8 +97,10 @@ VK.Auth.getLoginStatus();
 let vk = new VKI();
 let downloader = new Downloader();
 
+//downloader.getFiles(getAllAudioData());
+
 let btn = document.querySelector(".startbutton");
 btn.addEventListener("click", function(event){
-	event.preventDefault();
-	vk.load();
+  event.preventDefault();
+  vk.load();
 });
