@@ -29,12 +29,7 @@ class VKI {
   }
   
   getLoginStatus() {
-    let object;
-    function getResponse(response) {
-      object = response;
-    }
-    VK.Auth.getLoginStatus(getResponse);
-    return object;
+    return VK.Auth.getLoginStatus(response => response);
   }
   
   getSession() { // DON'T WORK
