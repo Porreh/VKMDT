@@ -46,23 +46,24 @@ class VKI {
   }
   
   setUserID() { // DONE
+    // TODO: CHANGE TO getSession();
     let response = this.getStatus();
     let userID = response.session.mid;
     this.setID(userID);
   }
 
-  logIN() {
+  logIN() { // DONE
     VK.Auth.login(function(response) {
       if (response.session) {
         console.info(`Авторизация прошла успешно.`);
       } else {
-        console.info(`Не удалось авторизироваться.`);
+        console.info(`Не удалось авторизоваться.`);
       }
     }, 8);
   }
 
-  logOUT() {
-    VK.Auth.logout(() => console.info('LOGOUT'));
+  logOUT() { // DONE
+    VK.Auth.logout(() => console.info('Сессия завершина.'));
   }
 
   load() { // NEED WORK
@@ -95,7 +96,6 @@ class VKI {
 }
 
 VK.Auth.getLoginStatus();
-VK.Auth.getSession();
 let vk = new VKI();
 let downloader = new Downloader();
 
