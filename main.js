@@ -34,7 +34,7 @@ class VKI {
     if(response) {
       return response;	
     } else {
-      getLoginStatus();	
+      this.getLoginStatus();	
     }
   }
   
