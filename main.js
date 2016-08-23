@@ -29,13 +29,15 @@ class VKI {
   }
   
   getLoginStatus() {
-    let response;
-    VK.Auth.getLoginStatus(x => response = x);
-    if(response) {
-      return response;	
-    } else {
-      this.getLoginStatus();	
-    }
+    let object;
+    VK.Auth.getLoginStatus(response => {
+      if(response) {
+        object = response;
+      } else {
+      	getLoginStatus();
+      }
+    });
+    return object;
   }
   
   //getSession() { // DON'T WORK
