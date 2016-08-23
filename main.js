@@ -31,7 +31,7 @@ class VKI {
   getLoginStatus() {
     let response;
     VK.Auth.getLoginStatus(x => response = x);
-    return response;
+    if(response) return response;
   }
   
   //getSession() { // DON'T WORK
