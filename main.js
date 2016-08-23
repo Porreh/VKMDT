@@ -30,7 +30,7 @@ class VKI {
   
   getLoginStatus() {
     let response;
-    VK.Auth.getLoginStatus(x => response = x));
+    VK.Auth.getLoginStatus(x => response = x);
     return response;
   }
   
