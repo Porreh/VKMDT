@@ -29,7 +29,7 @@ class VKI {
   }
   
   getLoginStatus() {
-    VK.Auth.getLoginStatus(response => object = response);
+    VK.Auth.getLoginStatus(response => var object = response);
     return object;
   }
   
