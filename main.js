@@ -79,11 +79,11 @@ class VKI {
     }
   }
   
-  getAllAudioData(ID, COUNT) {
+  getAllAudioData(ID) {
     let audioData = [],
         id = (ID) ? ID : this.id;
     VK.Api.call('audio.get', {owner_id: id}, function(x) {
-      let count = (COUNT) ? COUNT : x.response.length;
+      let count = x.response.length;
       for(let i = 1; i <= count; i++) {
         let url = x.response[i].url,
             artist = x.response[i].artist,
