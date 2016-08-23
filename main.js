@@ -40,18 +40,15 @@ class VKI {
   //  return object;
   //}
   
-  setID(newID) {
+  setID(newID) { // DONE
     this.id = newID;
     console.info(`USER ID - ${this.id}`);
   }
   
   getUserID() { // NEED WORK
     let response = this.getLoginStatus();
-    console.log(response);
-    //let userID = response.session.mid;
-    //console.log(userID);
-    //console.log(response.session.mid);
-    //this.setID(userID);
+    let userID = response.session.mid;
+    this.setID(userID);
   }
 
   logIN() {
