@@ -75,7 +75,7 @@ class VKI {
     } else {
       VK.Observer.subscribe('auth.login', x => self.setUserID());
       self.logIN();
-      VK.Observer.unsubscribe('auth.login', () => {});
+      //VK.Observer.unsubscribe('auth.login', () => {});
       self.logIN();
     }
   }
