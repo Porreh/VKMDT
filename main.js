@@ -69,14 +69,15 @@ class VKI {
   }
 
   load() { // NEED WORK
+    let self = this;
     let response = this.getLoginStatus();
     
     if(response.session) {
       console.log(`work`);
-      this.getUserID();
+      self.getUserID();
     } else {
-      VK.Observer.subscribe('auth.login', x => this.getUserID());
-      this.logIN();
+      VK.Observer.subscribe('auth.login', x => self.getUserID());
+      self.logIN();
       VK.Observer.unsubscribe('auth.login', () => {});
     }
   }
