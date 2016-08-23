@@ -32,25 +32,25 @@ class VKI {
     console.log(VK.Auth.getLoginStatus(x => x));
   }
   
-  getSession() { // DON'T WORK
-    let object;
-    VK.Auth.getSession(response => object = response);
-    return object;
-  }
+  //getSession() { // DON'T WORK
+  //  let object;
+  //  VK.Auth.getSession(response => object = response);
+  //  return object;
+  //}
   
   setID(newID) {
     this.id = newID;
     console.info(`USER ID - ${this.id}`);
   }
   
-  getUserID() { // NEED WORK
-    let response = this.getLoginStatus();
-    console.log(response);
-    //let userID = response.session.mid;
-    //console.log(userID);
-    //console.log(response.session.mid);
-    //this.setID(userID);
-  }
+  //getUserID() { // NEED WORK
+  //  let response = this.getLoginStatus();
+  //  console.log(response);
+  //  //let userID = response.session.mid;
+  //  //console.log(userID);
+  //  //console.log(response.session.mid);
+  //  //this.setID(userID);
+  //}
 
   logIN() {
     VK.Auth.login(function(response) {
@@ -80,19 +80,19 @@ class VKI {
     }
   }
   
-  getAllAudioData(ID) { // NEED WORK
-    let audioData = [];
-    let id = (ID) ? ID : this.id;
-    VK.Api.call('audio.get', {owner_id: id}, function(x) {
-      for(let i = 1; i < x.response.length; i++) {
-        let url = x.response[i].url,
-            artist = x.response[i].artist,
-            title = x.response[i].title;
-        audioData.push({'url': url, 'artist': artist, 'title': title});
-      }
-    });
-    return audioData;
-  }
+  //getAllAudioData(ID) { // NEED WORK
+  //  let audioData = [];
+  //  let id = (ID) ? ID : this.id;
+  //  VK.Api.call('audio.get', {owner_id: id}, function(x) {
+  //    for(let i = 1; i < x.response.length; i++) {
+  //      let url = x.response[i].url,
+  //          artist = x.response[i].artist,
+  //          title = x.response[i].title;
+  //      audioData.push({'url': url, 'artist': artist, 'title': title});
+  //    }
+  //  });
+  //  return audioData;
+  //}
 }
 
 let vk = new VKI();
@@ -103,5 +103,5 @@ let downloader = new Downloader();
 let btn = document.querySelector(".startbutton");
 btn.addEventListener("click", function(event){
 	event.preventDefault();
-	vk.load();
+	//vk.load();
 });
