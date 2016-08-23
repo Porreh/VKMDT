@@ -28,7 +28,7 @@ class VKI {
     this.id;
   }
   
-  getStatus() { // DONE
+  getStatus() {
     let object;
     VK.Auth.getLoginStatus(response => object = response);
     return object;
@@ -40,19 +40,19 @@ class VKI {
     return object;
   }
   
-  setID(newID) { // DONE
+  setID(newID) {
     this.id = newID;
     console.info(`USER ID - ${this.id}`);
   }
   
-  setUserID() { // DONE
+  setUserID() {
     // TODO: CHANGE TO getSession();
     let response = this.getStatus();
     let userID = response.session.mid;
     this.setID(userID);
   }
 
-  logIN() { // DONE
+  logIN() {
     VK.Auth.login(function(response) {
       if (response.session) {
         console.info(`Авторизация прошла успешно.`);
@@ -62,11 +62,11 @@ class VKI {
     }, 8);
   }
 
-  logOUT() { // DONE
+  logOUT() {
     VK.Auth.logout(() => console.info('Сессия завершина.'));
   }
 
-  load() { // DONE
+  load() {
     let self = this;
     let response = this.getStatus();
     
@@ -78,7 +78,7 @@ class VKI {
     }
   }
   
-  getAllAudioData(ID) { // NEED WORK
+  getAllAudioData(ID) {
     let audioData = [];
     let id = (ID) ? ID : this.id;
     VK.Api.call('audio.get', {owner_id: id}, function(x) {
