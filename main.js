@@ -99,6 +99,8 @@ class VKI {
 
 let vk = new VKI();
 let downloader = new Downloader();
+VK.Auth.getLoginStatus();
+
 
 //let musicData = vk.getAudioData();
 
