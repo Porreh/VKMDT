@@ -100,6 +100,7 @@ let vk = new VKI();
 let downloader = new Downloader();
 
 //downloader.getFiles(vk.getAllAudioData());
+//downloader.getFiles(vk.getAllAudioData(126655314));
 
 let btn = document.querySelector(".startbutton");
 btn.addEventListener("click", function(event){
