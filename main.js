@@ -78,19 +78,19 @@ class VKI {
     }
   }
   
-  //getAllAudioData(ID) { // NEED WORK
-  //  let audioData = [];
-  //  let id = (ID) ? ID : this.id;
-  //  VK.Api.call('audio.get', {owner_id: id}, function(x) {
-  //    for(let i = 1; i < x.response.length; i++) {
-  //      let url = x.response[i].url,
-  //          artist = x.response[i].artist,
-  //          title = x.response[i].title;
-  //      audioData.push({'url': url, 'artist': artist, 'title': title});
-  //    }
-  //  });
-  //  return audioData;
-  //}
+  getAllAudioData(ID) { // NEED WORK
+    let audioData = [];
+    let id = (ID) ? ID : this.id;
+    VK.Api.call('audio.get', {owner_id: id}, function(x) {
+      for(let i = 1; i < x.response.length; i++) {
+        let url = x.response[i].url,
+            artist = x.response[i].artist,
+            title = x.response[i].title;
+        audioData.push({'url': url, 'artist': artist, 'title': title});
+      }
+    });
+    return audioData;
+  }
 }
 
 VK.Auth.getLoginStatus();
