@@ -29,8 +29,9 @@ class VKI {
   }
   
   getLoginStatus() {
-    VK.Auth.getLoginStatus(response => var object = response);
-    return object;
+    var oiu;
+    VK.Auth.getLoginStatus(response => oiu = response);
+    return oiu;
   }
   
   //getSession() { // DON'T WORK
