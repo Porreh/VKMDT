@@ -71,12 +71,12 @@ class VKI {
     let response = this.getStatus();
     
     if(response.session) {
-      console.log(`work`);
       self.setUserID();
     } else {
       VK.Observer.subscribe('auth.login', x => self.setUserID());
       self.logIN();
       VK.Observer.unsubscribe('auth.login', () => {});
+      self.logIN();
     }
   }
   
