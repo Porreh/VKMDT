@@ -29,13 +29,14 @@ class VKI {
   }
   
   getLoginStatus() {
-    let object = VK.Auth.getLoginStatus(x => x);
+    let object;
+    VK.Auth.getLoginStatus(response => object = response);
     return object;
   }
   
   getSession() { // DON'T WORK
     let object;
-    VK.Auth.getSession(x => object = x);
+    VK.Auth.getSession(response => object = response);
     return object;
   }
   
@@ -45,10 +46,8 @@ class VKI {
   }
   
   getUserID() { // NEED WORK
-    let object = this.getLoginStatus();
-    console.log(object);
-    let userID = object.session.mid;
-    console.log(userID);
+    let response = this.getLoginStatus();
+    let userID = response.session.mid;
     this.setID(userID);
   }
 
