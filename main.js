@@ -12,7 +12,7 @@ class Downloader {
       a.click();
       a.remove();
     };
-    xhr.open('GET', url);
+    xhr.open('GET', url, true);
     xhr.send();
     console.log(`Загрузка: "${filename}"`);
   }
