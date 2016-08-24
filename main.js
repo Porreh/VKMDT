@@ -1,6 +1,7 @@
 class Downloader {
   saveFile(url, artist, title) {
     let filename = `${artist} - ${title}.mp3`;
+    console.log(`Загрузка: "${filename}"`);
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'blob';
     xhr.onload = function() {
@@ -19,7 +20,6 @@ class Downloader {
   getFiles(audioData) {
     for(let audio of audioData) {
       this.saveFile(audio.url, audio.artist, audio.title);
-      console.log(`Загрузка: ${audio.artist} - ${audio.title}`);
     }
   }
 }
