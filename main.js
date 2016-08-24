@@ -103,6 +103,7 @@ function getAllSongs(ID) {
 }
 
 function downloadAllSongs(ID = vk.id) {
+  console.log(getAllSongs(ID));
   downloader.getFiles(getAllSongs(ID));
 }
 
