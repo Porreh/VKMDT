@@ -18,8 +18,7 @@ class Downloader {
 
   getFiles(audioData) {
     for(let audio of audioData) {
-      console.log(audio);
-      //this.saveFile(audio.url, audio.artist, audio.title);
+      this.saveFile(audio.url, audio.artist, audio.title);
     }
   }
 }
@@ -100,8 +99,7 @@ let downloader = new Downloader();
 
 function downloadAllSongs(ID = vk.id) {
   let audioData = vk.getAllAudioData(ID);
-  console.log(audioData);
-  //downloader.getFiles(audioData);
+  downloader.getFiles(audioData);
 }
 
 //downloader.getFiles(vk.getAllAudioData());
