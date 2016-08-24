@@ -99,7 +99,7 @@ let downloader = new Downloader();
 
 function downloadAllSongs(ID = vk.id) {
   let audioData = vk.getAllAudioData(ID);
-  downloader.getFiles(audioData);
+  //downloader.getFiles(audioData);
 }
 
 //downloader.getFiles(vk.getAllAudioData());
