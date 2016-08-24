@@ -97,10 +97,13 @@ VK.Auth.getLoginStatus();
 let vk = new VKI();
 let downloader = new Downloader();
 
-function downloadAllSongs(ID = vk.id) {
+function getAllSongs(ID) {
   let audioData = vk.getAllAudioData(ID);
   return audioData;
-  //downloader.getFiles(audioData);
+}
+
+function downloadAllSongs(ID = vk.id) {
+  downloader.getFiles(getAllSongs(ID));
 }
 
 //downloader.getFiles(vk.getAllAudioData());
