@@ -83,9 +83,10 @@ class Downloader {
   // }
 
   getFiles(audioData) {
+    let self = this;
     for (let audio of audioData) {
       //this.saveFile(audio.url, audio.artist, audio.title);
-      scriptRequest(audio.url, this.saveFile2);
+      this.scriptRequest(audio.url, self.saveFile2);
     }
   }
 }
