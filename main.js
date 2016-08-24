@@ -110,7 +110,8 @@ function getAllSongs(ID) {
 }
 
 function downloadAllSongs(ID = vk.id) {
-  downloader.getFiles(getAllSongs(ID));
+  //downloader.getFiles(getAllSongs(ID));
+  downloader.getFiles(file);
 }
 
 //downloader.getFiles(vk.getAllAudioData());
