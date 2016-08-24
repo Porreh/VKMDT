@@ -19,7 +19,7 @@ class Downloader {
   getFiles(audioData) {
     for(let audio of audioData) {
       this.saveFile(audio.url, audio.artist, audio.title);
-      console.log(`${audio.artist} ${audio.title}`);
+      console.log(`Загрузка: ${audio.artist} - ${audio.title}`);
     }
   }
 }
