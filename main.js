@@ -1,6 +1,7 @@
 class Downloader {
   saveFile(url, artist, title) {
     let filename = `${artist} - ${title}.mp3`;
+    let corsURL = `https://crossorigin.me/${url}`;
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'blob';
     xhr.onload = function() {
@@ -12,7 +13,7 @@ class Downloader {
       a.click();
       a.remove();
     };
-    xhr.open('GET', url, true);
+    xhr.open('GET', corsURL, true);
     xhr.send();
     console.log(`Загрузка: "${filename}"`);
   }
