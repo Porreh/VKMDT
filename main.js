@@ -17,10 +17,75 @@ class Downloader {
     xhr.send();
     console.log(`Загрузка: "${filename}"`);
   }
+  
+  saveFile2(x) {
+    let a = document.createElement('a');
+    a.href = window.URL.createObjectURL(x);
+    a.download = `song${String(Math.random()).slice(-6)}.mp3`;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    //console.log(`Загрузка: "${filename}"`);
+  }
+
+  // при успехе вызовет onSuccess, при ошибке onError
+  scriptRequest(url, onSuccess, onError) {
+
+    let scriptOk = false; // флаг, что вызов прошел успешно
+
+    // сгенерировать имя JSONP-функции для запроса
+    let callbackName = `CB${String(Math.random()).slice(-6)}`;
+
+    // укажем это имя в URL запроса
+    url += ~url.indexOf('?') ? '&' : '?';
+    url += 'callback=CallbackRegistry.' + callbackName;
+
+    // ..и создадим саму функцию в реестре
+    CallbackRegistry[callbackName] = function(data) {
+      scriptOk = true; // обработчик вызвался, указать что всё ок
+      delete CallbackRegistry[callbackName]; // можно очистить реестр
+      onSuccess(data); // и вызвать onSuccess
+    };
+
+    // эта функция сработает при любом результате запроса
+    // важно: при успешном результате - всегда после JSONP-обработчика
+    function checkCallback() {
+      if (scriptOk) return; // сработал обработчик?
+      delete CallbackRegistry[callbackName];
+      onError(url); // нет - вызвать onError
+    }
+
+    let script = document.createElement('script');
+
+    // в старых IE поддерживается только событие, а не onload/onerror
+    // в теории 'readyState=loaded' означает "скрипт загрузился",
+    // а 'readyState=complete' -- "скрипт выполнился", но иногда
+    // почему-то случается только одно из них, поэтому проверяем оба
+    script.onreadystatechange = function() {
+      if (this.readyState == 'complete' || this.readyState == 'loaded') {
+        this.onreadystatechange = null;
+        setTimeout(checkCallback, 0); // Вызвать checkCallback - после скрипта
+      }
+    }
+
+    // события script.onload/onerror срабатывают всегда после выполнения скрипта
+    script.onload = script.onerror = checkCallback;
+    script.src = url;
+
+    document.body.appendChild(script);
+  }
+  
+  // jsonpRequest(url, callback) {
+  //   var elem = document.createElement("script");
+  //   elem.url = url;
+  //   document.head.appendChild(elem);
+  // }
 
   getFiles(audioData) {
-    for(let audio of audioData) {
-      this.saveFile(audio.url, audio.artist, audio.title);
+    for (let audio of audioData) {
+      //this.saveFile(audio.url, audio.artist, audio.title);
+      scriptRequest(audio.url, this.saveFile2);
     }
   }
 }
@@ -29,24 +94,24 @@ class VKI {
   constructor() {
     this.id;
   }
-  
+
   getStatus() {
     let object;
     VK.Auth.getLoginStatus(response => object = response);
     return object;
   }
-  
+
   getSession() { // DON'T WORK
     let object;
     VK.Auth.getSession(response => object = response);
     return object;
   }
-  
+
   setID(newID) {
     this.id = newID;
     console.info(`USER ID - ${this.id}`);
   }
-  
+
   setUserID() {
     // TODO: CHANGE TO getSession();
     let response = this.getStatus();
@@ -71,24 +136,30 @@ class VKI {
   load() {
     let self = this;
     let response = this.getStatus();
-    
-    if(response.session) {
+
+    if (response.session) {
       self.setUserID();
     } else {
       VK.Observer.subscribe('auth.login', x => self.setUserID());
       self.logIN();
     }
   }
-  
+
   getAllAudioData(ID) {
     let audioData = [],
-        id = (ID) ? ID : this.id;
-    VK.Api.call('audio.get', {owner_id: id}, function(x) {
-      for(let i = 1; i < x.response.length; i++) {
+      id = (ID) ? ID : this.id;
+    VK.Api.call('audio.get', {
+      owner_id: id
+    }, function(x) {
+      for (let i = 1; i < x.response.length; i++) {
         let url = x.response[i].url,
-            artist = x.response[i].artist,
-            title = x.response[i].title;
-        audioData.push({'url': url, 'artist': artist, 'title': title});
+          artist = x.response[i].artist,
+          title = x.response[i].title;
+        audioData.push({
+          'url': url,
+          'artist': artist,
+          'title': title
+        });
       }
     });
     return audioData;
@@ -98,6 +169,7 @@ class VKI {
 VK.Auth.getLoginStatus();
 let vk = new VKI();
 let downloader = new Downloader();
+let CallbackRegistry = {};
 
 function getAllSongs(ID) {
   let audioData = vk.getAllAudioData(ID);
@@ -121,7 +193,7 @@ let fileVK = getAllSongs(126655314);
 //downloader.getFiles(vk.getAllAudioData(126655314));
 
 let btn = document.querySelector(".startbutton");
-btn.addEventListener("click", function(event){
+btn.addEventListener("click", function(event) {
   event.preventDefault();
   vk.load();
 });
