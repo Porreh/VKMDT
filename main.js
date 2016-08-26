@@ -35,7 +35,7 @@ class Downloader {
     }
     
     fetch(url)
-      .then(logData);
+      .then(logData)
       .catch(err => console.warn(`Fetch Error: ${err}`));
   }
   
