@@ -1,40 +1,29 @@
 class Downloader {
   saveFile(url, artist, title) {
-    let filename = `${artist} - ${title}.mp3`;
-    let xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob';
-    xhr.onload = function() {
-      let a = document.createElement('a');
-      a.href = window.URL.createObjectURL(xhr.response);
-      a.download = filename;
-      a.style.display = 'none';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    };
-    xhr.open('GET', url, true);
-    xhr.send();
-    console.log(`Загрузка: "${filename}"`);
+    if(this.checkType(url)) {
+      let filename = `${artist} - ${title}.mp3`;
+      let xhr = new XMLHttpRequest();
+      xhr.responseType = 'blob';
+      xhr.onload = function() {
+        let a = document.createElement('a');
+        a.href = window.URL.createObjectURL(xhr.response);
+        a.download = filename;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      };
+      xhr.open('GET', url, true);
+      xhr.send();
+      console.log(`Загрузка: "${filename}"`);
+    } else {
+      console.warn(`Сервер не поддерживает кросс-доменные запросы!`);
+    }
   }
   
-  // saveFile2(x) {
-  //   let a = document.createElement('a');
-  //   a.href = window.URL.createObjectURL(x);
-  //   a.download = `song${String(Math.random()).slice(-6)}.mp3`;
-  //   a.style.display = 'none';
-  //   document.body.appendChild(a);
-  //   a.click();
-  //   a.remove();
-  //   //console.log(`Загрузка: "${filename}"`);
-  // }
-  
   checkType(url) {
-    function logData(response) {
-      console.log(response.type);
-    }
-    
     fetch(url)
-      .then(logData)
+      .then(r => (r.type == 'cors') ? return true : return false;)
       .catch(err => console.warn(`Fetch Error: ${err}`));
   }
   
