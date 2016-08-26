@@ -30,7 +30,6 @@ class Downloader {
           return false;
         }
       })
-      .catch(err => console.warn(`Fetch Error: ${err}`));
   }
 
   getFiles(audioData) {
