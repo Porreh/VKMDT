@@ -32,48 +32,10 @@ class Downloader {
       })
       .catch(err => console.warn(`Fetch Error: ${err}`));
   }
-  
-  log(x) {
-    console.log(x);
-  }
-
-  // scriptRequest(url, onSuccess, onError) {
-  //   let scriptOk = false;
-  //   let callbackName = `CB${String(Math.random()).slice(-6)}`;
-  //   url += ~url.indexOf('?') ? '&' : '?';
-  //   url += 'callback=CallbackRegistry.' + callbackName;
-
-  //   CallbackRegistry[callbackName] = function(data) {
-  //     scriptOk = true;
-  //     delete CallbackRegistry[callbackName];
-  //     onSuccess(data);
-  //   };
-    
-  //   function checkCallback() {
-  //     if (scriptOk) return;
-  //     delete CallbackRegistry[callbackName];
-  //     onError(url);
-  //   }
-    
-  //   let script = document.createElement('script');
-  //   script.onreadystatechange = function() {
-  //     if (this.readyState == 'complete' || this.readyState == 'loaded') {
-  //       this.onreadystatechange = null;
-  //       setTimeout(checkCallback, 0);
-  //     }
-  //   }
-  //   script.onload = script.onerror = checkCallback;
-  //   script.src = url;
-
-  //   document.body.appendChild(script);
-  // }
 
   getFiles(audioData) {
-    let self = this;
-    for (let audio of audioData) {
-      //this.saveFile(audio.url, audio.artist, audio.title);
-      this.checkType(audio.url);
-      //this.scriptRequest(audio.url, self.log, self.log);
+    for(let audio of audioData) {
+      this.saveFile(audio.url, audio.artist, audio.title);
     }
   }
 }
