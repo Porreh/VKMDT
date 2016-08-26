@@ -1,7 +1,6 @@
 class Downloader {
   saveFile(url, artist, title) {
     let filename = `${artist} - ${title}.mp3`;
-    let corsURL = `https://crossorigin.me/${url}`;
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'blob';
     xhr.onload = function() {
@@ -13,7 +12,8 @@ class Downloader {
       a.click();
       a.remove();
     };
-    xhr.open('GET', corsURL, true);
+    xhr.open('GET', url, true);
+    xhr.withCredentials = true;
     xhr.send();
     console.log(`Загрузка: "${filename}"`);
   }
@@ -30,7 +30,7 @@ class Downloader {
   // }
   
   log(x) {
-    console.log(x);
+    console.info(x);
   }
 
   scriptRequest(url, onSuccess, onError) {
@@ -67,8 +67,8 @@ class Downloader {
   getFiles(audioData) {
     let self = this;
     for (let audio of audioData) {
-      //this.saveFile(audio.url, audio.artist, audio.title);
-      this.scriptRequest(audio.url, self.log, self.log);
+      this.saveFile(audio.url, audio.artist, audio.title);
+      //this.scriptRequest(audio.url, self.log, self.log);
     }
   }
 }
