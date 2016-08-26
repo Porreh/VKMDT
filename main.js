@@ -1,10 +1,10 @@
 class Downloader {
   saveFile(url, artist, title) {
-    if(this.checkType(url)) {
+    if (this.checkType(url)) {
       let filename = `${artist} - ${title}.mp3`;
       let xhr = new XMLHttpRequest();
       xhr.responseType = 'blob';
-      xhr.onload = function() {
+      xhr.onload = function () {
         let a = document.createElement('a');
         a.href = window.URL.createObjectURL(xhr.response);
         a.download = filename;
@@ -20,20 +20,21 @@ class Downloader {
       console.warn(`Сервер не поддерживает кросс-доменные запросы!`);
     }
   }
-  
+
   checkType(url) {
     fetch(url)
       .then(r => {
-        if(r.type == 'cors') {
+        console.log(r);
+        if (r.type == 'cors') {
           return true;
         } else {
           return false;
         }
-      })
+      });
   }
 
   getFiles(audioData) {
-    for(let audio of audioData) {
+    for (let audio of audioData) {
       this.saveFile(audio.url, audio.artist, audio.title);
     }
   }
@@ -69,7 +70,7 @@ class VKI {
   }
 
   logIN() {
-    VK.Auth.login(function(response) {
+    VK.Auth.login(function (response) {
       if (response.session) {
         console.info(`Авторизация прошла успешно.`);
       } else {
@@ -99,7 +100,7 @@ class VKI {
       id = (ID) ? ID : this.id;
     VK.Api.call('audio.get', {
       owner_id: id
-    }, function(x) {
+    }, function (x) {
       for (let i = 1; i < x.response.length; i++) {
         let url = x.response[i].url,
           artist = x.response[i].artist,
@@ -142,7 +143,7 @@ let fileVK = getAllSongs(126655314);
 //downloader.getFiles(vk.getAllAudioData(126655314));
 
 let btn = document.querySelector(".startbutton");
-btn.addEventListener("click", function(event) {
+btn.addEventListener("click", function (event) {
   event.preventDefault();
   vk.load();
 });
