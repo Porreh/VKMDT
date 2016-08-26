@@ -13,7 +13,6 @@ class Downloader {
       a.remove();
     };
     xhr.open('GET', url, true);
-    xhr.withCredentials = true;
     xhr.send();
     console.log(`Загрузка: "${filename}"`);
   }
