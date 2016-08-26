@@ -23,7 +23,13 @@ class Downloader {
   
   checkType(url) {
     fetch(url)
-      .then(r => (r.type == 'cors') ? return true : return false;)
+      .then(r => {
+        if(r.type == 'cors') {
+          return true;
+        } else {
+          return false;
+        }
+      })
       .catch(err => console.warn(`Fetch Error: ${err}`));
   }
   
