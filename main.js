@@ -13,7 +13,6 @@ class Downloader {
       a.remove();
     };
     xhr.open('GET', url, true);
-    xhr.withCredentials = true;
     xhr.send();
     console.log(`Загрузка: "${filename}"`);
   }
@@ -29,15 +28,15 @@ class Downloader {
   //   //console.log(`Загрузка: "${filename}"`);
   // }
   
-  saveFiles3(url, artist, title) {
-    function logData(response) {
-      console.log(response);
-    }
+  // saveFiles3(url, artist, title) {
+  //   function logData(response) {
+  //     console.log(response);
+  //   }
     
-    fetch(url)
-      .then(logData)
-      .catch(err => console.warn(`Fetch Error: ${err}`));
-  }
+  //   fetch(url)
+  //     .then(logData)
+  //     .catch(err => console.warn(`Fetch Error: ${err}`));
+  // }
   
   log(x) {
     console.info(x);
