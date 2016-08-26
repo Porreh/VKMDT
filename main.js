@@ -22,7 +22,7 @@ class Downloader {
   }
 
   checkType(url) {
-    fetch(url)
+    fetch(url, {mode: 'no-cors'})
       .then(r => {
         console.log(r);
         if (r.type == 'cors') {
