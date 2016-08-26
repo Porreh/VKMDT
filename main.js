@@ -18,75 +18,57 @@ class Downloader {
     console.log(`Загрузка: "${filename}"`);
   }
   
-  saveFile2(x) {
-    let a = document.createElement('a');
-    a.href = window.URL.createObjectURL(x);
-    a.download = `song${String(Math.random()).slice(-6)}.mp3`;
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    //console.log(`Загрузка: "${filename}"`);
+  // saveFile2(x) {
+  //   let a = document.createElement('a');
+  //   a.href = window.URL.createObjectURL(x);
+  //   a.download = `song${String(Math.random()).slice(-6)}.mp3`;
+  //   a.style.display = 'none';
+  //   document.body.appendChild(a);
+  //   a.click();
+  //   a.remove();
+  //   //console.log(`Загрузка: "${filename}"`);
+  // }
+  
+  log(x) {
+    console.log(x);
   }
 
-  // при успехе вызовет onSuccess, при ошибке onError
   scriptRequest(url, onSuccess, onError) {
-
-    let scriptOk = false; // флаг, что вызов прошел успешно
-
-    // сгенерировать имя JSONP-функции для запроса
+    let scriptOk = false;
     let callbackName = `CB${String(Math.random()).slice(-6)}`;
-
-    // укажем это имя в URL запроса
     url += ~url.indexOf('?') ? '&' : '?';
     url += 'callback=CallbackRegistry.' + callbackName;
 
-    // ..и создадим саму функцию в реестре
     CallbackRegistry[callbackName] = function(data) {
-      scriptOk = true; // обработчик вызвался, указать что всё ок
-      delete CallbackRegistry[callbackName]; // можно очистить реестр
-      onSuccess(data); // и вызвать onSuccess
-    };
-
-    // эта функция сработает при любом результате запроса
-    // важно: при успешном результате - всегда после JSONP-обработчика
-    function checkCallback() {
-      if (scriptOk) return; // сработал обработчик?
+      scriptOk = true;
       delete CallbackRegistry[callbackName];
-      onError(url); // нет - вызвать onError
+      onSuccess(data);
+    };
+    
+    function checkCallback() {
+      if (scriptOk) return;
+      delete CallbackRegistry[callbackName];
+      onError(url);
     }
-
+    
     let script = document.createElement('script');
-
-    // в старых IE поддерживается только событие, а не onload/onerror
-    // в теории 'readyState=loaded' означает "скрипт загрузился",
-    // а 'readyState=complete' -- "скрипт выполнился", но иногда
-    // почему-то случается только одно из них, поэтому проверяем оба
     script.onreadystatechange = function() {
       if (this.readyState == 'complete' || this.readyState == 'loaded') {
         this.onreadystatechange = null;
-        setTimeout(checkCallback, 0); // Вызвать checkCallback - после скрипта
+        setTimeout(checkCallback, 0);
       }
     }
-
-    // события script.onload/onerror срабатывают всегда после выполнения скрипта
     script.onload = script.onerror = checkCallback;
     script.src = url;
 
     document.body.appendChild(script);
   }
-  
-  // jsonpRequest(url, callback) {
-  //   var elem = document.createElement("script");
-  //   elem.url = url;
-  //   document.head.appendChild(elem);
-  // }
 
   getFiles(audioData) {
     let self = this;
     for (let audio of audioData) {
       //this.saveFile(audio.url, audio.artist, audio.title);
-      this.scriptRequest(audio.url, self.saveFile2);
+      this.scriptRequest(audio.url, self.log, self.log);
     }
   }
 }
