@@ -37,6 +37,8 @@ class Downloader {
 
   files(audioData) {
     console.log(audioData);
+  }
+}
   //   function (x) {
   //     if (x.error) {
   //       console.warn(x.error.error_msg);
@@ -52,7 +54,6 @@ class Downloader {
   //       callback audioData;
   //     }
   // }
-}
 
 class VKI {
   constructor() {
