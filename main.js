@@ -124,6 +124,7 @@ let downloader = new Downloader();
 function getAllSongs(ID) {
   let audioData = vk.getAllAudioData(ID);
   console.log(audioData);
+  return;
 }
 
 let file = [{
