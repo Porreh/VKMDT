@@ -115,9 +115,7 @@ class VKI {
         }
       }
     });
-    if (audioData.length > 0) {
-      return audioData;
-    }
+    return audioData;
   }
 }
 
@@ -126,7 +124,7 @@ let vk = new VKI();
 let downloader = new Downloader();
 
 function getAllSongs(ID) {
-  console.log(vk.getAllAudioData(ID));
+  getFiles(vk.getAllAudioData(ID));
 }
 
 //getAllSongs(254268339);
