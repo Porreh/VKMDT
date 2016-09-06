@@ -104,7 +104,7 @@ class VKI {
         console.warn(x.error.error_msg);
       } else {
         let audioData = [];
-        console.log(x.response);
+        console.log(x.response[0]);
         // for (let i = 1; i < x.response[0]; i++) {
         //   let url = x.response[i].url,
         //       artist = x.response[i].artist,
