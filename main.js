@@ -97,10 +97,11 @@ class VKI {
 
   getAllAudioData(ID, callback) {
     let self = this;
+    let cb = callback;
     let id = (ID) ? ID : this.id;
     VK.Api.call('audio.get', {
       owner_id: id
-    }, function (x, callback) {
+    }, function (x, cb) {
       if (x.error) {
         console.warn(x.error.error_msg);
       } else {
@@ -112,7 +113,7 @@ class VKI {
             'title': x.response[i].title
           });
         }
-        callback([1,2,3]);
+        cb([1,2,3]);
       }
     });
   }
