@@ -101,19 +101,20 @@ class VKI {
       owner_id: id
     }, function (x) {
       if (x.error) {
-        console.log(x.error.error_msg);
+        console.warn(x.error.error_msg);
       } else {
         let audioData = [];
-        for (let i = 1; i < x.response[0]; i++) {
-          let url = x.response[i].url,
-              artist = x.response[i].artist,
-              title = x.response[i].title;
-          audioData.push({
-              'url': url,
-              'artist': artist,
-              'title': title
-          });
-        }
+        console.log(x);
+        // for (let i = 1; i < x.response[0]; i++) {
+        //   let url = x.response[i].url,
+        //       artist = x.response[i].artist,
+        //       title = x.response[i].title;
+        //   audioData.push({
+        //       'url': url,
+        //       'artist': artist,
+        //       'title': title
+        //   });
+        // }
         return audioData;
       }
     });
@@ -135,7 +136,8 @@ let file = [{
   url: "https://psv4.vk.me/c611324/u53381224/audios/70fecda5c268.mp3?extra=piaGcQzzxz2bqQ-vwe6KlwQfSgpsOsrnLmgFv1Ea3sc-Jft5Rh3iFufIIprXvicsFisbTba99G7Vg9pHUesCTTtDOk0GVa2-pmNPpRosr_c5x_H9Fg-WYRrdPCIJgIxfkOrcdqSCoTAY"
 }];
 
-//getAllSongs(126655314);
+//getAllSongs(254268339);
+//getAllSongs(126655314); Denied
 
 let btn = document.querySelector(".startbutton");
 btn.addEventListener("click", function (event) {
