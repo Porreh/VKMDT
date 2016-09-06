@@ -7,7 +7,6 @@ class Downloader {
         }
       })
       .catch(response => console.log(response));
-    }
     
     console.log(checkType(url));
     
