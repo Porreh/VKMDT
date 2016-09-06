@@ -101,15 +101,19 @@ class VKI {
     VK.Api.call('audio.get', {
       owner_id: id
     }, function (x) {
-      for (let i = 1; i < x.response[0]; i++) {
-        let url = x.response[i].url,
-          artist = x.response[i].artist,
-          title = x.response[i].title;
-        audioData.push({
-          'url': url,
-          'artist': artist,
-          'title': title
-        });
+      if (x.error) {
+        console.log(x.error.error_msg);
+      } else {
+        for (let i = 1; i < x.response[0]; i++) {
+          let url = x.response[i].url,
+              artist = x.response[i].artist,
+              title = x.response[i].title;
+          audioData.push({
+              'url': url,
+              'artist': artist,
+              'title': title
+          });
+        }
       }
     });
     return audioData;
