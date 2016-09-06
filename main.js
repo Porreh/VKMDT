@@ -36,9 +36,7 @@ class Downloader {
   }
 
   getFiles(audioData) {
-    for (let audio of audioData) {
-      console.log(audio);
-    }
+    console.log(audioData);
   }
 }
 
@@ -125,6 +123,7 @@ let downloader = new Downloader();
 
 function getAllSongs(ID) {
   let audioData = vk.getAllAudioData(ID);
+  console.log(audioData);
   downloader.getFiles(audioData);
 }
 
