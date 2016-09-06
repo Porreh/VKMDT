@@ -1,9 +1,7 @@
 class Downloader {
   saveFile(url, artist, title) {
     function checkType(url) {
-      fetch(url, {
-        mode: 'no-cors'
-      })
+      fetch(url)
         .then(r => {
           console.log(r);
           if (r.type == 'cors') {
