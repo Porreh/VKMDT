@@ -111,7 +111,7 @@ class VKI {
               'title': x.response[i].title
           });
         }
-        console.log(audioData);
+        return audioData;
       }
     });
   }
