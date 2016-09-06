@@ -104,13 +104,14 @@ class VKI {
         console.warn(x.error.error_msg);
       } else {
         let audioData = [];
-        for (let i = 1; i <= x.response[0]; i++) {
-          let r = x.response;
-          console.log(r[i].url);
+        for (let i = 1; i <= x.response[0];  
+          let url = x.response[i].url;
+          let artist = x.response[i].artist;
+          let title = x.response[i].title;
           audioData.push({
-              'url': r[i].url,
-              'artist': r[i].artist,
-              'title': r[i].title
+              'url': url,
+              'artist': artist,
+              'title': title
           });
         }
         console.log(audioData);
