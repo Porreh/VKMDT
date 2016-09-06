@@ -36,8 +36,8 @@ class Downloader {
       });
   }
 
-  files(audioData) {
-    let self = this;
+  files(audioData, context) {
+    let self = context;
     if (audioData.error) {
       console.warn(audioData.error.error_msg);
     } else {
@@ -103,13 +103,14 @@ class VKI {
     }
   }
 
-  getAudioData(ID, callback) {
+  getAudioData(ID, callback, context) {
     let id = (ID) ? ID : this.id;
-    VK.Api.call('audio.get', { owner_id: id }, x => callback(x));
+    VK.Api.call('audio.get', { owner_id: id }, x => callback(x, context));
   }
 }
 
 VK.Auth.getLoginStatus();
+let self = this;
 let vk = new VKI();
 let download = new Downloader();
 
@@ -119,7 +120,7 @@ function getAllSongs() {
 }
 
 function getAllFriendSongs(ID) {
-  vk.getAudioData(ID, download.files);
+  vk.getAudioData(ID, download.files, self);
 }
 
 
