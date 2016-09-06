@@ -122,9 +122,7 @@ let vk = new VKI();
 let downloader = new Downloader();
 
 function getAllSongs(ID) {
-  let audioData = vk.getAllAudioData(ID);
-  console.log(audioData);
-  downloader.getFiles(audioData);
+  downloader.getFiles(vk.getAllAudioData(ID));
 }
 
 //getAllSongs(254268339);
