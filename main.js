@@ -1,24 +1,25 @@
 class Downloader {
   saveFile(url, artist, title) {
-    if (this.checkType(url)) {
-      let filename = `${artist} - ${title}.mp3`;
-      let xhr = new XMLHttpRequest();
-      xhr.responseType = 'blob';
-      xhr.onload = function () {
-        let a = document.createElement('a');
-        a.href = window.URL.createObjectURL(xhr.response);
-        a.download = filename;
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      };
-      xhr.open('GET', url, true);
-      xhr.send();
-      console.log(`Загрузка: "${filename}"`);
-    } else {
-      console.warn(`Сервер не поддерживает кросс-доменные запросы!`);
-    }
+    console.log(`${artist} - ${title}.mp3`);
+    // if (this.checkType(url)) {
+    //   let filename = `${artist} - ${title}.mp3`;
+    //   let xhr = new XMLHttpRequest();
+    //   xhr.responseType = 'blob';
+    //   xhr.onload = function () {
+    //     let a = document.createElement('a');
+    //     a.href = window.URL.createObjectURL(xhr.response);
+    //     a.download = filename;
+    //     a.style.display = 'none';
+    //     document.body.appendChild(a);
+    //     a.click();
+    //     a.remove();
+    //   };
+    //   xhr.open('GET', url, true);
+    //   xhr.send();
+    //   console.log(`Загрузка: "${filename}"`);
+    // } else {
+    //   console.warn(`Сервер не поддерживает кросс-доменные запросы!`);
+    // }
   }
 
   checkType(url) {
@@ -37,23 +38,16 @@ class Downloader {
 
   files(audioData) {
     console.log(audioData);
+    if (audioData.error) {
+      console.warn(audioData.error.error_msg);
+    } else {
+      for (let i = 1; i < audioData.response.length; i++) {
+        this.saveFile(audioData.response[i].url, audioData.response[i].artist, audioData.response[i].title);
+      }
+    }
+  }
   }
 }
-  //   function (x) {
-  //     if (x.error) {
-  //       console.warn(x.error.error_msg);
-  //     } else {
-  //       let audioData = [];
-  //       for (let i = 1; i < x.response.length; i++) {
-  //         audioData.push({
-  //           'url': x.response[i].url,
-  //           'artist': x.response[i].artist,
-  //           'title': x.response[i].title
-  //         });
-  //       }
-  //       callback audioData;
-  //     }
-  // }
 
 class VKI {
   constructor() {
