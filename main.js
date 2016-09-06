@@ -1,12 +1,18 @@
 class Downloader {
   saveFile(url, artist, title) {
+    let filename = `${artist} - ${title}.mp3`;
     fetch(url)
-      .then(response => {
-        if (response.type == 'cors') {
-          console.log('cors');
-        }
+      .then(response => response.blob())
+      .then(song => {
+        let a = document.createElement('a');
+        a.href = window.URL.createObjectURL(song);
+        a.download = filename;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
       })
-      .catch(response => console.log(response));
+      .catch(console.log(`Сервер не поддерживает кросс-доменные запросы!`));
     
     // if (this.checkType(url)) {
     //   let filename = `${artist} - ${title}.mp3`;
