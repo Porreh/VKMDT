@@ -101,7 +101,7 @@ class VKI {
     VK.Api.call('audio.get', {
       owner_id: id
     }, function (x) {
-      for (let i = 1; i < x.response.length; i++) {
+      for (let i = 1; i < x.response[0]; i++) {
         let url = x.response[i].url,
           artist = x.response[i].artist,
           title = x.response[i].title;
