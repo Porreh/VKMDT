@@ -139,5 +139,5 @@ let fileVK = getAllSongs(126655314);
 let btn = document.querySelector(".startbutton");
 btn.addEventListener("click", function (event) {
   event.preventDefault();
-  vk.load();
+  vk.load;
 });
