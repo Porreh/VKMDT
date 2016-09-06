@@ -22,7 +22,9 @@ class Downloader {
   }
 
   checkType(url) {
-    fetch(url, {mode: 'no-cors'})
+    fetch(url, {
+        mode: 'no-cors'
+      })
       .then(r => {
         console.log(r);
         if (r.type == 'cors') {
@@ -96,6 +98,7 @@ class VKI {
   }
 
   getAllAudioData(ID) {
+    let audioData = [];
     let id = (ID) ? ID : this.id;
     VK.Api.call('audio.get', {
       owner_id: id
@@ -103,17 +106,16 @@ class VKI {
       if (x.error) {
         console.warn(x.error.error_msg);
       } else {
-        let audioData = [];
         for (let i = 1; i < x.response.length; i++) {
           audioData.push({
-              'url': x.response[i].url,
-              'artist': x.response[i].artist,
-              'title': x.response[i].title
+            'url': x.response[i].url,
+            'artist': x.response[i].artist,
+            'title': x.response[i].title
           });
         }
-        return audioData;
       }
     });
+    return audioData;
   }
 }
 
