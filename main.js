@@ -1,15 +1,12 @@
 class Downloader {
   saveFile(url, artist, title) {
-    function checkType(url) {
-      fetch(url)
-        .then(r => {
-          console.log(r);
-          if (r.type == 'cors') {
-            return true;
-        } else {
-          return false;
+    fetch(url)
+      .then(response => {
+        if (response.type == 'cors') {
+          console.log('cors')
         }
-      });
+      }
+      .catch(response => console.log(response)));
     }
     
     console.log(checkType(url));
