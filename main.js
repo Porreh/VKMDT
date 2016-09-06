@@ -115,11 +115,11 @@ class VKI {
         }
       }
     });
-    setInterval() {() => {
+    setInterval(() => {
       if (audioData.length > 0) {
         return;
       }
-    }, 1000};
+    }, 1000);
     return audioData;
   }
 }
