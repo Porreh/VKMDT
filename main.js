@@ -123,7 +123,11 @@ VK.Auth.getLoginStatus();
 let vk = new VKI();
 let downloader = new Downloader();
 
-function getAllSongs(ID) {
+function getAllSongs() {
+  vk.getAllAudioData(null, downloader.getFiles);
+}
+
+function getAllFriendSongs(ID) {
   vk.getAllAudioData(ID, downloader.getFiles);
 }
 
