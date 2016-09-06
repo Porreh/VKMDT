@@ -1,11 +1,11 @@
 class Downloader {
-  saveFile(url, artist, title) {
+  download(url, artist, title) {
     let filename = `${artist} - ${title}.mp3`;
     fetch(url)
       .then(response => response.blob())
-      .then(song => {
+      .then(data => {
         let a = document.createElement('a');
-        a.href = window.URL.createObjectURL(song);
+        a.href = window.URL.createObjectURL(data);
         a.download = filename;
         a.style.display = 'none';
         document.body.appendChild(a);
@@ -13,29 +13,9 @@ class Downloader {
         a.remove();
       })
       .catch(console.log(`Сервер не поддерживает кросс-доменные запросы!`));
-    
-    // if (this.checkType(url)) {
-    //   let filename = `${artist} - ${title}.mp3`;
-    //   let xhr = new XMLHttpRequest();
-    //   xhr.responseType = 'blob';
-    //   xhr.onload = function () {
-    //     let a = document.createElement('a');
-    //     a.href = window.URL.createObjectURL(xhr.response);
-    //     a.download = filename;
-    //     a.style.display = 'none';
-    //     document.body.appendChild(a);
-    //     a.click();
-    //     a.remove();
-    //   };
-    //   xhr.open('GET', url, true);
-    //   xhr.send();
-    //   console.log(`Загрузка: "${filename}"`);
-    // } else {
-    //   console.warn(`Сервер не поддерживает кросс-доменные запросы!`);
-    // }
   }
 
-  files(audioData, callback) {
+  split(audioData, callback) {
     if (audioData.error) {
       console.warn(audioData.error.error_msg);
     } else {
@@ -108,22 +88,19 @@ class VKI {
 }
 
 VK.Auth.getLoginStatus();
-let self = this;
 let vk = new VKI();
-let download = new Downloader();
-
+let file = new Downloader();
 
 function getAllSongs() {
-  vk.getAudioData(null, download.files);
+  vk.getAudioData(null, file.dataSplit, file.download);
 }
 
 function getAllFriendSongs(ID) {
-  vk.getAudioData(ID, download.files, download.saveFile);
+  vk.getAudioData(ID, file.split, file.download);
 }
 
-
-//getAllSongs(254268339);
-//getAllSongs(126655314); Denied
+// 254268339
+// 126655314 Denied
 
 let btn = document.querySelector(".startbutton");
 btn.addEventListener("click", function (event) {
