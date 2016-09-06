@@ -8,8 +8,6 @@ class Downloader {
       })
       .catch(response => console.log(response));
     
-    console.log(checkType(url));
-    
     // if (this.checkType(url)) {
     //   let filename = `${artist} - ${title}.mp3`;
     //   let xhr = new XMLHttpRequest();
