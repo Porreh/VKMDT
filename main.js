@@ -46,7 +46,6 @@ class Downloader {
       }
     }
   }
-  }
 }
 
 class VKI {
