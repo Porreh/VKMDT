@@ -119,16 +119,10 @@ class VKI {
 VK.Auth.getLoginStatus();
 let vk = new VKI();
 let downloader = new Downloader();
-let CallbackRegistry = {};
 
 function getAllSongs(ID) {
   let audioData = vk.getAllAudioData(ID);
-  return audioData;
-}
-
-function downloadAllSongs(ID = vk.id) {
-  downloader.getFiles(getAllSongs(ID));
-  //downloader.getFiles(file);
+  console.log(audioData);
 }
 
 let file = [{
