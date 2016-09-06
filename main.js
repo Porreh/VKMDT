@@ -39,6 +39,8 @@ class Downloader {
     for (let audio of audioData) {
       console.log(audio);
     }
+    console.log(typeof audioData);
+    console.log(audioData);
   }
 }
 
