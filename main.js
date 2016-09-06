@@ -97,7 +97,6 @@ class VKI {
 
   getAllAudioData(ID, callback) {
     let self = this;
-    callback([1,2,3,4,5,6,7,8,9]);
     let id = (ID) ? ID : this.id;
     VK.Api.call('audio.get', {
       owner_id: id
@@ -113,6 +112,7 @@ class VKI {
             'title': x.response[i].title
           });
         }
+        self.callback([1,2,3]);
       }
     });
   }
