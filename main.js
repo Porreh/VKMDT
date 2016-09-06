@@ -92,7 +92,7 @@ let vk = new VKI();
 let file = new Downloader();
 
 function getAllSongs() {
-  vk.getAudioData(null, file.dataSplit, file.download);
+  vk.getAudioData(null, file.split, file.download);
 }
 
 function getAllFriendSongs(ID) {
