@@ -98,14 +98,17 @@ class VKI {
   }
 
   getAllAudioData(ID, callback) {
-    let audioData = [];
     let id = (ID) ? ID : this.id;
+    function getArr(audioData) {
+      callback(audioData);
+    }
     VK.Api.call('audio.get', {
       owner_id: id
-    }, function (x, cb) {
+    }, function (x, getArr) {
       if (x.error) {
         console.warn(x.error.error_msg);
       } else {
+        let audioData = [];
         for (let i = 1; i < x.response.length; i++) {
           audioData.push({
             'url': x.response[i].url,
@@ -113,9 +116,9 @@ class VKI {
             'title': x.response[i].title
           });
         }
+        getArr(audioData);
       }
     });
-    callback(audioData);
   }
 }
 
