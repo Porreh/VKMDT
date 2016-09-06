@@ -5,8 +5,8 @@ class Downloader {
         if (response.type == 'cors') {
           console.log('cors');
         }
-      }
-      .catch(response => console.log(response)));
+      })
+      .catch(response => console.log(response));
     }
     
     console.log(checkType(url));
