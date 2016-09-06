@@ -37,12 +37,12 @@ class Downloader {
   }
 
   files(audioData) {
-    console.log(audioData);
+    let self = this;
     if (audioData.error) {
       console.warn(audioData.error.error_msg);
     } else {
       for (let i = 1; i < audioData.response.length; i++) {
-        this.saveFile(audioData.response[i].url, audioData.response[i].artist, audioData.response[i].title);
+        self.saveFile(audioData.response[i].url, audioData.response[i].artist, audioData.response[i].title);
       }
     }
   }
