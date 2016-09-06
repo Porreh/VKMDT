@@ -36,7 +36,9 @@ class Downloader {
   }
 
   getFiles(audioData) {
-    console.log(audioData);
+    let arr = audioData;
+    console.log(arr.length);
+    arr.forEach(x => console.log(x));
   }
 }
 
