@@ -36,13 +36,12 @@ class Downloader {
       });
   }
 
-  files(audioData, context) {
-    let self = context;
+  files(audioData, callback) {
     if (audioData.error) {
       console.warn(audioData.error.error_msg);
     } else {
       for (let i = 1; i < audioData.response.length; i++) {
-        self.saveFile(audioData.response[i].url, audioData.response[i].artist, audioData.response[i].title);
+        callback(audioData.response[i].url, audioData.response[i].artist, audioData.response[i].title);
       }
     }
   }
@@ -103,9 +102,9 @@ class VKI {
     }
   }
 
-  getAudioData(ID, callback, context) {
+  getAudioData(ID, callback, fn) {
     let id = (ID) ? ID : this.id;
-    VK.Api.call('audio.get', { owner_id: id }, x => callback(x, context));
+    VK.Api.call('audio.get', { owner_id: id }, x => callback(x, fn));
   }
 }
 
@@ -120,7 +119,7 @@ function getAllSongs() {
 }
 
 function getAllFriendSongs(ID) {
-  vk.getAudioData(ID, download.files, self);
+  vk.getAudioData(ID, download.files, download.saveFile);
 }
 
 
