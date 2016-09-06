@@ -131,13 +131,10 @@ let file = [{
   url: "https://psv4.vk.me/c611324/u53381224/audios/70fecda5c268.mp3?extra=piaGcQzzxz2bqQ-vwe6KlwQfSgpsOsrnLmgFv1Ea3sc-Jft5Rh3iFufIIprXvicsFisbTba99G7Vg9pHUesCTTtDOk0GVa2-pmNPpRosr_c5x_H9Fg-WYRrdPCIJgIxfkOrcdqSCoTAY"
 }];
 
-let fileVK = getAllSongs(126655314);
-
-//downloader.getFiles(vk.getAllAudioData());
-//downloader.getFiles(vk.getAllAudioData(126655314));
+//getAllSongs(126655314);
 
 let btn = document.querySelector(".startbutton");
 btn.addEventListener("click", function (event) {
   event.preventDefault();
-  vk.load;
+  vk.load();
 });
