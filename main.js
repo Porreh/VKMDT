@@ -35,11 +35,23 @@ class Downloader {
       });
   }
 
-  getFiles(audioData) {
-    for (let audio of audioData) {
-      console.log(audio);
-    }
-  }
+  files(audioData) {
+    console.log(audioData);
+  //   function (x) {
+  //     if (x.error) {
+  //       console.warn(x.error.error_msg);
+  //     } else {
+  //       let audioData = [];
+  //       for (let i = 1; i < x.response.length; i++) {
+  //         audioData.push({
+  //           'url': x.response[i].url,
+  //           'artist': x.response[i].artist,
+  //           'title': x.response[i].title
+  //         });
+  //       }
+  //       callback audioData;
+  //     }
+  // }
 }
 
 class VKI {
@@ -97,40 +109,25 @@ class VKI {
     }
   }
 
-  getAllAudioData(ID, callback) {
+  getAudioData(ID, callback) {
     let id = (ID) ? ID : this.id;
-    let aucall = VK.Api.call('audio.get', {
-      owner_id: id
-    }, function (x) {
-      if (x.error) {
-        console.warn(x.error.error_msg);
-      } else {
-        let audioData = [];
-        for (let i = 1; i < x.response.length; i++) {
-          audioData.push({
-            'url': x.response[i].url,
-            'artist': x.response[i].artist,
-            'title': x.response[i].title
-          });
-        }
-        return audioData;
-      }
-    });
-    console.log(aucall);
+    VK.Api.call('audio.get', { owner_id: id }, x => callback(x));
   }
 }
 
 VK.Auth.getLoginStatus();
 let vk = new VKI();
-let downloader = new Downloader();
+let download = new Downloader();
+
 
 function getAllSongs() {
-  vk.getAllAudioData(null, downloader.getFiles);
+  vk.getAudioData(null, download.files);
 }
 
 function getAllFriendSongs(ID) {
-  vk.getAllAudioData(ID, downloader.getFiles);
+  vk.getAudioData(ID, download.files);
 }
+
 
 //getAllSongs(254268339);
 //getAllSongs(126655314); Denied
