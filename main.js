@@ -37,7 +37,7 @@ class Downloader {
 
   getFiles(audioData) {
     let arr = audioData;
-    console.log(typeof audioData);
+    console.log(audioData);
   }
 }
 
