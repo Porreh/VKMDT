@@ -1,6 +1,21 @@
 class Downloader {
   saveFile(url, artist, title) {
-    console.log(`${artist} - ${title}.mp3`);
+    function checkType(url) {
+      fetch(url, {
+        mode: 'no-cors'
+      })
+        .then(r => {
+          console.log(r);
+          if (r.type == 'cors') {
+            return true;
+        } else {
+          return false;
+        }
+      });
+    }
+    
+    console.log(checkType(url));
+    
     // if (this.checkType(url)) {
     //   let filename = `${artist} - ${title}.mp3`;
     //   let xhr = new XMLHttpRequest();
@@ -20,20 +35,6 @@ class Downloader {
     // } else {
     //   console.warn(`Сервер не поддерживает кросс-доменные запросы!`);
     // }
-  }
-
-  checkType(url) {
-    fetch(url, {
-        mode: 'no-cors'
-      })
-      .then(r => {
-        console.log(r);
-        if (r.type == 'cors') {
-          return true;
-        } else {
-          return false;
-        }
-      });
   }
 
   files(audioData, callback) {
