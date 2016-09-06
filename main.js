@@ -97,13 +97,8 @@ class VKI {
     }
   }
 
-  getAllAudioData(ID) {
+  getAllAudioData(ID, callback) {
     let id = (ID) ? ID : this.id;
-    let data = [];
-    function requestDone(audioData) {
-      console.log(audioData);
-      data = audioData;
-    }
     VK.Api.call('audio.get', {
       owner_id: id
     }, function (x) {
@@ -118,10 +113,9 @@ class VKI {
             'title': x.response[i].title
           });
         }
-        requestDone(audioData);
+        callback(audioData);
       }
     });
-    return data;
   }
 }
 
@@ -130,8 +124,7 @@ let vk = new VKI();
 let downloader = new Downloader();
 
 function getAllSongs(ID) {
-  let ad = vk.getAllAudioData(ID);
-  downloader.getFiles(ad);
+  vk.getAllAudioData(ID, downloader.getFiles());
 }
 
 //getAllSongs(254268339);
