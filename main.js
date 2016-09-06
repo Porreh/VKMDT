@@ -3,7 +3,7 @@ class Downloader {
     fetch(url)
       .then(response => {
         if (response.type == 'cors') {
-          console.log('cors')
+          console.log('cors');
         }
       }
       .catch(response => console.log(response)));
