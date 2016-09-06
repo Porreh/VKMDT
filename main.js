@@ -100,26 +100,24 @@ class VKI {
   getAllAudioData(ID) {
     let audioData = [];
     let id = (ID) ? ID : this.id;
-    VK.Api.call('audio.get', {
+    let oiu = VK.Api.call('audio.get', {
       owner_id: id
     }, function (x) {
       if (x.error) {
         console.warn(x.error.error_msg);
       } else {
+        let ad = [];
         for (let i = 1; i < x.response.length; i++) {
-          audioData.push({
+          ad.push({
             'url': x.response[i].url,
             'artist': x.response[i].artist,
             'title': x.response[i].title
           });
         }
+        return ad;
       }
     });
-    setInterval(() => {
-      if (audioData.length > 0) {
-        return;
-      }
-    }, 1000);
+    console.log(oiu);
     return audioData;
   }
 }
